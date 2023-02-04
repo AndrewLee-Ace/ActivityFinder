@@ -1,0 +1,163 @@
+/* font-family: 'Itim', cursive;
+font-family: 'Martel Sans', sans-serif; */
+  *{
+    margin: 0;
+    padding: 0;
+  }
+
+  #map {
+    height: 80%;
+    width: 50%;
+    position: relative;
+    top: 10px;
+    left: 10px;
+    /* border: red dotted 3px; */
+    box-shadow: black 5px 3px 10px;
+    border-radius: 5px;
+  }
+
+  .curlocation {
+    transition-duration: 0.4s;
+    font-family: 'Martel Sans', sans-serif;
+    font-size: .9em;
+    border: none;
+    border-radius: 2em;
+    color: green;
+    background-color: rgb(226, 247, 249);
+    box-shadow: rgb(10, 138, 10) -5px 5px ;
+    width: 13em;
+    position: relative;
+    left: 6em;
+  }
+
+  .curlocation:hover{
+    color: black;
+    background-color: rgb(219, 252, 255);
+  }
+
+  .curlocation:active{
+    background-color: rgb(219, 252, 255);
+    box-shadow: rgb(9, 107, 9) -3px 4px;
+    transform: translateY(3px);
+  }
+
+  #list {
+      width: 21rem;
+      height: 13rem;
+      /* border: greenyellow dotted 3px; */
+      position: relative;
+      left: 28rem;
+      top: -35rem;
+      font-family: 'Varela Round', sans-serif;
+      background-color: aliceblue;
+      box-shadow: black 5px 4px 10px;
+      border-radius: 5px;
+  }
+
+  #list h1 {
+      text-align: center;
+      text-decoration:underline;
+  }
+
+  #list li {
+      list-style-type: none;
+      padding: 3px;
+      margin-top: 5px;
+      text-align: center;
+      background-color: rgb(216, 235, 252);
+      box-shadow: grey 5px 4px 10px;
+  }
+
+  #info {
+    width: 21rem;
+    height: 21.5rem;
+    /* border: greenyellow dotted 3px; */
+    position: relative;
+    left: 28rem;
+    top: -34rem;
+    font-family: 'Varela Round', sans-serif;
+    background-color: aliceblue;
+    box-shadow: black 5px 4px 10px;
+    border-radius: 5px;
+    }
+
+    #info h1 {
+        text-align: center;
+        text-decoration:underline;
+    }
+
+    #info .description img{
+        position: relative;
+        width: 100%;
+        
+    }
+
+    #suggestion{
+        width: 100%;
+        height: 10rem;
+        /* border: dotted 2px lightgreen; */
+        /* position: relative;
+        top: -20rem; */
+    }
+
+  .header {
+    width: 100%;
+    height: 3em;
+    background-color: rgb(226, 247, 249);
+    text-align: center;
+    font-family: 'Varela Round', sans-serif;
+    font-size: 24px;
+    word-spacing: 1em;
+    border: dotted green 3px;
+    position: relative; 
+    top: 0px;
+  }
+
+  .container{
+      height: 80%;
+      width: 100%;
+      border: rgb(4, 0, 249) dotted 3px;
+  }
+
+  .container h3 {
+    font-family: 'Varela Round', sans-serif;
+    width: 50%;
+    position: relative;
+    left: 30px;
+    text-align: center;
+  }
+  
+  .contact{
+      height: 8em;
+      width: 100%;
+      position: relative;
+      border: red solid 3px;
+  }
+
+  .contact footer {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      line-height: 10px;
+      border: blue solid 3px;
+  }
+
+  .contact footer a{
+      color: black;
+  }
+
+  .contact footer ul {
+
+    line-height: 2em;
+  }
+
+  html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    position: absolute;
+    background-color:rgb(253, 235, 205);
+  }
+
+  

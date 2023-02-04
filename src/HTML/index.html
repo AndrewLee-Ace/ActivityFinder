@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activity Finder</title>
+
+    <link rel="stylesheet" href="../CSS/index.css">
+    <script src="../JS/index.js"></script>
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOOarwDBwWEdcUpxFrBssT6XHSNxLeKIk&callback=initMap"></script>
+
+    <!-- Goole Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Itim&family=Martel+Sans:wght@200;400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="header">
+        <h1>Activity Finder</h1>
+    </div>
+
+    <div class="container">
+        <h3>Move to your desired location on the map and attractions based on that location will be listed</h3>
+        <button class="curlocation" type="button" onclick="getLocation(); notify(); setTimeout(revert, 6500)">Use Current Location</button>
+
+        <h1 id="demo"></h1>
+
+        <div id="map"></div>
+
+        <div id="list">
+            <h1>Activities List</h1>
+            <ul>
+                <li>MOMA</li>
+                <li>Lincoln Center</li>
+                <li>Central Park Zoo</li>
+                <li>Carnegie Hall</li>
+                <li>Times Square</li>
+            </ul>
+        </div>
+        <div id="info">
+            <h1>Activity Info</h1>
+
+            <div class="description">
+                <img src="../park.jpg" alt="Battery Park">
+            </div>
+        </div>
+
+    </div>
+
+    
+    
+    <div id="suggestion">
+        <div class="carousel">
+            <div class="carousel_item">first</div>
+            <div class="carousel_item">first</div>
+            <div class="carousel_item">first</div>
+        </div>
+    </div>
+
+    <div class="contact">
+        <footer class="info">
+            <ul>
+                <li><a href="https://github.com/AndrewLee-Ace">github link</a></li>
+                <li><a href="https://github.com/AndrewLee-Ace">github link</a></li>
+                <li><a href="https://github.com/AndrewLee-Ace">github link</a></li>
+            </ul>
+        </footer>
+    </div>
+   
+    
+</body>
+</html>
