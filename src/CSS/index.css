@@ -86,11 +86,11 @@ font-family: 'Martel Sans', sans-serif; */
         text-decoration:underline;
     }
 
-    #info .description img{
+    /* #info .description img{
         position: relative;
         width: 100%;
         
-    }
+    } */
 
     #suggestion{
         width: 100%;
@@ -99,6 +99,51 @@ font-family: 'Martel Sans', sans-serif; */
         /* position: relative;
         top: -20rem; */
     }
+
+    .carousel{
+      position: relative;
+      width: 100%;
+    }
+
+    .carousel img {
+      width: 100%;
+      position: relative;
+    }
+
+    .carousel_item{
+      /* background: grey; */
+      padding: 1em;
+      display: none;
+    }
+
+    .carousel_item_selected{
+      display: block;
+    }
+
+    .carousel_nav{
+      width: 100%;
+      padding: .3em;
+      position: absolute;
+      bottom: -.3em;
+      text-align: center;
+      /* background-color: rgb(226, 247, 249); */
+    }
+
+    .carousel_button{
+      width: 10px;
+      height: 10px;
+      display: inline-block;
+      background: rgba(64, 59, 59, 0.2);
+      border-radius: 50%;
+      margin: 0 5px;
+      cursor: pointer;
+    }
+
+    .carousel_button_selected{
+      background: rgba(91, 81, 81, 0.5);
+    }
+
+
 
   .header {
     width: 100%;

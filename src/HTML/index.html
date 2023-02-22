@@ -7,8 +7,6 @@
     <title>Activity Finder</title>
 
     <link rel="stylesheet" href="../CSS/index.css">
-    <script src="../JS/index.js"></script>
-    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOOarwDBwWEdcUpxFrBssT6XHSNxLeKIk&callback=initMap"></script>
 
     <!-- Goole Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -45,7 +43,12 @@
             <h1>Activity Info</h1>
 
             <div class="description">
-                <img src="../park.jpg" alt="Battery Park">
+                <!-- <img src="../park.jpg" alt="Battery Park"> -->
+                <div class="carousel">
+                    <div class="carousel_item"><img src="../park.jpg" alt="Battery Park"></div>
+                    <div class="carousel_item"><img src="../park2.jpeg" alt="Also Battery Park"></div>
+                    <div class="carousel_item"><img src="../park3.jpeg" alt="Again.."></div>
+                </div>
             </div>
         </div>
 
@@ -54,11 +57,11 @@
     
     
     <div id="suggestion">
-        <div class="carousel">
+        <!-- <div class="carousel"> 
             <div class="carousel_item">first</div>
-            <div class="carousel_item">first</div>
-            <div class="carousel_item">first</div>
-        </div>
+            <div class="carousel_item">second</div>
+            <div class="carousel_item">third</div>
+        </div> -->
     </div>
 
     <div class="contact">
@@ -71,6 +74,15 @@
         </footer>
     </div>
    
-    
+    <script src="../JS/index.js"></script>
+    <!-- <script  
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOOarwDBwWEdcUpxFrBssT6XHSNxLeKIk&callback=initMap">
+        defer
+    </script> -->
+    <script 
+    async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOOarwDBwWEdcUpxFrBssT6XHSNxLeKIk&libraries=places&callback=initMap">
+    </script>
+
 </body>
 </html>

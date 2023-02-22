@@ -1,24 +1,106 @@
 // let cords = document.getElementById('demo')
-let lat
-let lng
-let map
+let lat;
+let lng;
+let map;
+
 const x = document.getElementById("demo");
 
-//  navigator.geolocation.getCurrentPosition(setCurrentLocation);
- navigator.geolocation.getCurrentPosition(initMap);
+document.querySelectorAll(".carousel").forEach((carousel) => {
+  const items = carousel.querySelectorAll(".carousel_item");
+  const buttonsHTML = Array.from(items, () => {
+    return `<span class="carousel_button"></span>`;
+  });
+  // console.log(buttonsHTML)
+  carousel.insertAdjacentHTML(
+    "beforeend",
+    `
+  <div class="carousel_nav">
+    ${buttonsHTML.join("")}
+  </div>`
+  );
+
+  const buttons = carousel.querySelectorAll(".carousel_button");
+  buttons.forEach((button, i) => {
+    button.addEventListener("click", () => {
+      //unselect all items
+      items.forEach((item) => item.classList.remove("carousel_item_selected"));
+      buttons.forEach((button) =>
+        button.classList.remove("carousel_button_selected")
+      );
+
+      items[i].classList.add("carousel_item_selected");
+      button.classList.add("carousel_button_selected");
+    });
+  });
+
+  //selects 1st item on page load
+  items[0].classList.add("carousel_item_selected");
+  buttons[0].classList.add("carousel_button_selected");
+});
+
+//  navigator.geolocation.getCurrentPosition(initMap);
 
 /*
-Method to initialize a google map object with its current position centered around user's coordinates
+Method to initialize a google map object 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Assigns map variable its position and location on page to map id
 */
 function initMap(position) {
-    map = new google.maps.Map(document.getElementById("map"), {
-    // center: { lat: 40.737661129048384, lng: -73.98407565617671 },
-      center: { lat: position.coords.latitude, lng: position.coords.longitude},
-      zoom: 13,
-    });
-  }
+  const manhattan = new google.maps.LatLng(
+    40.737661129048384,
+    -73.98407565617671
+  );
+
+  const map = new google.maps.Map(document.getElementById("map"), {
+    center: manhattan,
+    zoom: 13,
+  });
+
+  const infowindow = new google.maps.InfoWindow();
+  
+  let request = {
+    query: 'fast food',
+    fields: ['name', 'geometry', 'business_status',  'formatted_address','photos'],
+  }; 
+
+  const service = new google.maps.places.PlacesService(map);
+
+  service.findPlaceFromQuery(request, function(results, status) {
+    if (status === google.maps.places.PlacesServiceStatus.OK){
+      for (let i = 0; i < results.length; i++){
+        const marker = new google.maps.Marker({
+          position: results[i].geometry.location,
+          map,
+        });
+
+        marker.addListener("click", () => {
+          infowindow.setContent(results[i].name || "place");
+          infowindow.open({
+            anchor: marker,
+            map,
+          });
+        });
+        console.log(results[i]);
+      }
+      map.setCenter(results[0].geometry.location);
+    }
+  })
+
+
+  // const marker = new google.maps.Marker({
+  //   position: manhattan,
+  //   map,
+  //   title: "3rd Ave & E 21st St",
+  // });
+
+  // marker.addListener("click", () => {
+  //   infowindow.open({
+  //     anchor: marker,
+  //     map,
+  //   });
+  // });
+}
+
 
 /*
 Method to get current location
@@ -28,7 +110,7 @@ getCurrentPosition returns coordinate object to function within its parameter
 // function getLocation() {
 //   if (navigator.geolocation) {
 //     navigator.geolocation.getCurrentPosition(setCurrentLocation);
-//   } else { 
+//   } else {
 //     x.innerHTML = "Geolocation is not supported by this browser.";
 //   }
 // }
@@ -39,29 +121,26 @@ Method used in button to use current location on google maps
 longitude and latitude saved into variables that creates a map object that displays the map with your
 current location as its center.
 */
-function setCurrentLocation(position) {
-    lat = position.coords.latitude
-    lng = position.coords.longitude
-    // console.log(`${lat} ${lng}`)
-    map = new google.maps.Map(document.getElementById("map"), {
-        center: {lat: lat, lng: lng},
-        zoom: 13
-    })
-}
+// function setCurrentLocation(position) {
+//     lat = position.coords.latitude
+//     lng = position.coords.longitude
+//     // console.log(`${lat} ${lng}`)
+//     map = new google.maps.Map(document.getElementById("map"), {
+//         center: {lat: lat, lng: lng},
+//         zoom: 13
+//     })
+// }
 
-function notify(){
-    let button = document.getElementById('curlocation')
-    button.innerHTML = 'Allow a couple seconds for location to be acquired'
-}
+// function notify(){
+//     let button = document.getElementById('curlocation')
+//     button.innerHTML = 'Allow a couple seconds for location to be acquired'
+// }
 
-function revert(){
-    let button = document.getElementById('curlocation')
-    button.innerHTML = 'Use Current Location'
+// function revert(){
+//     let button = document.getElementById('curlocation')
+//     button.innerHTML = 'Use Current Location'
 
-}
-
-
-
+// }
 
 //   function useCurrentLocation(){
 //       map = {
@@ -69,5 +148,5 @@ function revert(){
 //           zoom: 13
 //       }
 //   }
-  
-  window.initMap = initMap;
+
+window.initMap = initMap;
