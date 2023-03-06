@@ -52,6 +52,7 @@ font-family: 'Martel Sans', sans-serif; */
       background-color: aliceblue;
       box-shadow: black 5px 4px 10px;
       border-radius: 5px;
+      overflow: scroll;
   }
 
   #list h1 {
@@ -86,11 +87,11 @@ font-family: 'Martel Sans', sans-serif; */
         text-decoration:underline;
     }
 
-    /* #info .description img{
+    #info .description {
         position: relative;
         width: 100%;
-        
-    } */
+        height: 80%;
+    }
 
     #suggestion{
         width: 100%;
@@ -103,17 +104,20 @@ font-family: 'Martel Sans', sans-serif; */
     .carousel{
       position: relative;
       width: 100%;
+      height: 100%;
     }
 
     .carousel img {
       width: 100%;
       position: relative;
+      height: 80%;
     }
 
     .carousel_item{
       /* background: grey; */
       padding: 1em;
       display: none;
+      height: 100%;
     }
 
     .carousel_item_selected{
