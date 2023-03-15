@@ -1,61 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Activity Finder</title>
 
-    <link rel="stylesheet" href="../CSS/index.css">
+    <link rel="stylesheet" href="../CSS/index.css" />
 
     <!-- Goole Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Itim&family=Martel+Sans:wght@200;400&display=swap" rel="stylesheet">
-</head>
-<body>
-    <div class="header">
-        <h1>Activity Finder</h1>
-    </div>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Itim&family=Martel+Sans:wght@200;400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    
 
     <div class="container">
-        <h3>Move to your desired location on the map and attractions based on that location will be listed</h3>
-        <button class="curlocation" type="button" onclick="getLocation(); notify(); setTimeout(revert, 6500)">Use Current Location</button>
-
-        <h1 id="demo"></h1>
-
-        <div id="map"></div>
-
-        <div id="list">
-            <h1>Activities List</h1>
-            <div class="names">
-            <ul id="names">
-               
-            </ul>
-            </div>
-            
+        
+        <div class="header">
+            <h1>Activity Finder</h1>
         </div>
-        <div id="info">
-            <h1>Activity Info</h1>
+      <h3 class="map-instruc">
+        Move to your desired location on the map and attractions based on that
+        location will be listed
+      </h3>
 
-            <div class="description">
-            
-                <div class="carousel">
-                    
-                </div>
-            </div>
+      <h3 class="list-instruc">
+          Click on the activity link!
+      </h3>
+      <!-- <button
+        class="curlocation"
+        type="button"
+        onclick="getLocation(); notify(); setTimeout(revert, 6500)"
+      >
+        Use Current Location
+      </button> -->
+
+    <div id="map"></div>
+
+    <div id="list">
+        <h1>Activities List</h1>
+        <div class="names">
+        <ul id="names"></ul>
         </div>
+    </div>
+    <div id="info">
+        <h1>Activity Info</h1>
 
+        <div class="description">
+        <div class="carousel"></div>
+        </div>
+    </div>
+    </div>
+   
+
+    <div id="suggestion">
+      <div class="business">
+        <div class="img-container">
+          <img src="../shrimp.jpg" alt="pic" />
+        </div>
+        <h2>shrimpy</h2>
+        <div class="info">
+          <div class="address">
+            <p>address</p>
+            <p>city</p>
+            <p>state zipCode</p>
+          </div>
+          <div class="reviews">
+            <h3>category</h3>
+            <h3 class="rating">rating stars</h3>
+            <p>90 reviews</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="business">
+        <div class="img-container">
+          <img src="../shrimps.jpeg" alt="pic" />
+        </div>
+        <h2>shrimpo</h2>
+        <div class="info">
+          <div class="address">
+            <p>address</p>
+            <p>city</p>
+            <p>state zipCode</p>
+          </div>
+          <div class="reviews">
+            <h3>category</h3>
+            <h3 class="rating">rating stars</h3>
+            <p>90 reviews</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="business">
+        <div class="img-container">
+          <img src="../ohno.jpg" alt="pic" />
+        </div>
+        <h2>shrimpert</h2>
+        <div class="info">
+          <div class="address">
+            <p>address</p>
+            <p>city</p>
+            <p>state zipCode</p>
+          </div>
+          <div class="reviews">
+            <h3>category</h3>
+            <h3 class="rating">rating stars</h3>
+            <p>90 reviews</p>
+          </div>
+        </div>
+      </div>
     </div>
 
-    
-    
-    <div id="suggestion"></div>
-
-    <div class="contact">
+    <!-- <div class="contact">
         <footer class="info">
             <ul>
                 <li><a href="https://github.com/AndrewLee-Ace">github link</a></li>
@@ -63,17 +131,16 @@
                 <li><a href="https://github.com/AndrewLee-Ace">github link</a></li>
             </ul>
         </footer>
-    </div>
-   
+    </div> -->
+
     <script src="../JS/index.js"></script>
     <!-- <script  
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOOarwDBwWEdcUpxFrBssT6XHSNxLeKIk&callback=initMap">
         defer
     </script> -->
-    <script 
-    async
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOOarwDBwWEdcUpxFrBssT6XHSNxLeKIk&libraries=places&callback=initMap">
-    </script>
-
-</body>
+    <script
+      async
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOOarwDBwWEdcUpxFrBssT6XHSNxLeKIk&libraries=places&callback=initMap"
+    ></script>
+  </body>
 </html>
