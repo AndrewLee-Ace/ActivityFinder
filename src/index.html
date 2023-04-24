@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Activity Finder</title>
 
-    <link rel="stylesheet" href="../CSS/index.css" />
+    <link rel="stylesheet" href="./CSS/index.css" />
 
     <!-- Goole Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -35,13 +35,13 @@
         Move to your desired location on the map and attractions based on that
         location will be listed
       </h3>
-        <button
+        <!-- <button
                 class="curlocation"
                 type="button"
                 onclick="getLocation(); notify(); setTimeout(revert, 6500)"
             >
                 Use Current Location
-        </button>
+        </button> -->
         </div>
 
       <h3 class="list-instruc">
@@ -59,19 +59,20 @@
     </div>
     <div id="info">
         <h1>Activity Info</h1>
-
         <div class="description">
         <div class="carousel"></div>
         </div>
     </div>
     </div>
-   
+    
+   <h1 id="title">Nearby Restaurants</h1>
 
     <div id="suggestion">
+      
       <div class="business">
         <div class="img-container">
-          <img src="../shrimp.jpg" alt="pic" class="bpic"/>
-          <img src="../shrimp.jpg" alt="pic" class="fpic"/>
+          <img src="./shrimp.jpg" alt="pic" class="bpic"/>
+          <img src="./shrimp.jpg" alt="pic" class="fpic"/>
         </div>
         
         <div class="info">
@@ -91,8 +92,8 @@
 
       <div class="business">
         <div class="img-container">
-            <img src="../shrimps.jpeg" alt="bpic"  class="bpic" />
-          <img src="../shrimps.jpeg" alt="fpic" class="fpic" />
+            <img src="./shrimps.jpeg" alt="bpic"  class="bpic" />
+          <img src="./shrimps.jpeg" alt="fpic" class="fpic" />
         </div>
         
         
@@ -113,8 +114,8 @@
 
       <div class="business">
         <div class="img-container">
-          <img src="../ohno.jpg" alt="pic" class="bpic"/>
-          <img src="../ohno.jpg" alt="pic" class="fpic"/>
+          <img src="./ohno.jpg" alt="pic" class="bpic"/>
+          <img src="./ohno.jpg" alt="pic" class="fpic"/>
         </div>
         
         <div class="info">
@@ -134,8 +135,8 @@
 
       <div class="business">
         <div class="img-container">
-          <img src="../good.jpg" alt="pic" class="bpic"/>
-          <img src="../good.jpg" alt="pic" class="fpic"/>
+          <img src="./good.jpg" alt="pic" class="bpic"/>
+          <img src="./good.jpg" alt="pic" class="fpic"/>
         </div>
         
         <div class="info">
@@ -155,8 +156,8 @@
 
       <div class="business">
         <div class="img-container">
-          <img src="../shrimp.jpg" alt="pic" class="bpic"/>
-          <img src="../shrimp.jpg" alt="pic" class="fpic"/>
+          <img src="./shrimp.jpg" alt="pic" class="bpic"/>
+          <img src="./shrimp.jpg" alt="pic" class="fpic"/>
         </div>
         
         <div class="info">
@@ -176,8 +177,8 @@
 
       <div class="business">
         <div class="img-container">
-            <img src="../shrimps.jpeg" alt="bpic"  class="bpic" />
-          <img src="../shrimps.jpeg" alt="fpic" class="fpic" />
+            <img src="./shrimps.jpeg" alt="bpic"  class="bpic" />
+          <img src="./shrimps.jpeg" alt="fpic" class="fpic" />
         </div>
         
         
@@ -198,8 +199,8 @@
 
       <div class="business">
         <div class="img-container">
-          <img src="../ohno.jpg" alt="pic" class="bpic"/>
-          <img src="../ohno.jpg" alt="pic" class="fpic"/>
+          <img src="./ohno.jpg" alt="pic" class="bpic"/>
+          <img src="./ohno.jpg" alt="pic" class="fpic"/>
         </div>
         
         <div class="info">
@@ -219,8 +220,8 @@
 
       <div class="business">
         <div class="img-container">
-          <img src="../good.jpg" alt="pic" class="bpic"/>
-          <img src="../good.jpg" alt="pic" class="fpic"/>
+          <img src="./good.jpg" alt="pic" class="bpic"/>
+          <img src="./good.jpg" alt="pic" class="fpic"/>
         </div>
         
         <div class="info">
@@ -249,11 +250,8 @@
         </footer>
     </div> -->
 
-    <script src="../JS/index.js"></script>
-    <!-- <script  
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOOarwDBwWEdcUpxFrBssT6XHSNxLeKIk&callback=initMap">
-        defer
-    </script> -->
+    <script type="module" src="./JS/index.js"></script>
+    <script type="module" src="./JS/index1.js"></script>
     <script
       async
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOOarwDBwWEdcUpxFrBssT6XHSNxLeKIk&libraries=places&callback=initMap"

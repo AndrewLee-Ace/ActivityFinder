@@ -1,300 +1,567 @@
 /* font-family: 'Itim', cursive;
 font-family: 'Martel Sans', sans-serif; */
-html,
-body {
-  height: 100%;
-  width: 100%;
-  /* font-size: 16px; */
-  margin: 0px;
-  padding: 0px;
-  position: absolute;
-  background-color: rgb(253, 235, 205);
-  overflow: scroll;
-}
+@media screen and (min-width: 768px) {
+  html,
+  body {
+    height: 100%;
+    width: 100%;
+    /* font-size: 16px; */
+    margin: 0px;
+    padding: 0px;
+    position: absolute;
+    background-color: rgb(253, 235, 205);
+    overflow: scroll;
+  }
 
-* {
-  margin: 0;
-  padding: 0;
-}
+  * {
+    margin: 0;
+    padding: 0;
+  }
 
-.container .stuff {
-  grid-area: stuff;
-}
-.container {
-  border: rgb(4, 0, 249) dotted 3px;
-  /* height: 80%; */
-  width: 100%;
-  position: relative;
-  /* left: 0; */
-  display: grid;
-  grid-template-areas:
-    "header header header header"
-    "stuff stuff . content-l"
-    "map map map list-name"
-    "map map map list-desc"
-    ". . . .";
-  grid-template-columns: 25% 25% 25% 25%;
-  row-gap: 20px;
-}
+  .container{
+    /* border: rgb(4, 0, 249) dotted 3px; */
+    /* height: 80%; */
+    width: 100%;
+    position: relative;
+    display: grid;
+    grid-template-areas:
+      "header header header header"
+      "content-m content-m content-m content-m"
+      "map map map map"
+      "list-name list-name list-desc list-desc";
+    grid-template-columns: 25% 25% 25% 25%;
+    row-gap: 20px;
+  }
 
-.container .header {
-  width: 100%;
-  height: 3em;
-  background-color: rgb(226, 247, 249);
-  text-align: center;
-  font-family: "Varela Round", sans-serif;
-  font-size: 24px;
-  word-spacing: 1em;
-  border: dotted green 3px;
-  position: relative;
-  top: 0px;
-  grid-area: header;
-}
+  .container .header{
+    width: 100%;
+    height: 3em;
+    background-color: rgb(226, 247, 249);
+    text-align: center;
+    font-family: "Varela Round", sans-serif;
+    font-size: 24px;
+    word-spacing: 1em;
+    border: dotted green 3px;
+    position: relative;
+    top: 0px;
+    grid-area: header;
+  }
 
-.container .map-instruc {
-  font-family: "Varela Round", sans-serif;
-  display: block;
-  font-size: 2.3em;
-  width: 40rem;
-  position: relative;
-  left: 10rem;
-  text-align: center;
-  /* grid-area: content-m; */
-}
+  .container .map-instruc{
+    font-family: "Varela Round", sans-serif;
+    display: block;
+    font-size: 1.4em;
+    width: 45rem;
+    position: relative;
+    /* left: 10rem; */
+    margin-left: 2.5rem;
+    text-align: center;
+    grid-area: content-m;
+  }
 
-.container #map {
-  height: 22rem;
-  width: 60rem;
-  padding: 5rem 2rem;
-  margin-top: 3rem;
-  margin-left: 0.5rem;
-  /*  top: 10px; 
-    left: 10px;  */
-  /* border: red dotted 3px; */
-  box-shadow: black 5px 3px 10px;
-  border-radius: 5px;
-  grid-area: map;
-}
-.container .list-instruc {
-  font-family: "Varela Round", sans-serif;
-  /* display: inline-block; */
-  font-size: 2.3em;
-  width: 20rem;
-  position: relative;
-  right: 0.5rem;
-  text-align: center;
-  grid-area: content-l;
-}
+  .container #map {
+    height: 18rem;
+    width: 40rem;
+    padding: 5rem 2rem;
+    /* margin-top: 1.5rem; */
+    margin-left: 2rem;
+    /* border: red dotted 3px; */
+    box-shadow: black 5px 3px 10px;
+    border-radius: 5px;
+    grid-area: map;
+  }
 
-.container #list {
-  width: 21rem;
-  height: 15rem;
-  /* border: greenyellow dotted 3px; */
-  position: relative;
-  /* left: 28rem;
-      top: -35rem; */
-  font-family: "Varela Round", sans-serif;
-  background-color: aliceblue;
-  box-shadow: black 5px 4px 10px;
-  border-radius: 5px;
-  overflow: scroll;
-  grid-area: list-name;
-}
+  .container .list-instruc {
+    font-family: "Varela Round", sans-serif;
+    /* display: inline-block; */
+    font-size: 1.5em;
+    width: 15rem;
+    position: relative;
+    /* right: 1rem; */
+    left: 5rem;
+    text-align: center;
+    visibility: hidden;
+    /* grid-area: content-l; */
+  }
 
-.container #list h1 {
-  text-align: center;
-  text-decoration: underline;
-}
+  .container #list {
+    width: 21rem;
+    height: 16rem;
+    /* border: greenyellow dotted 3px; */
+    position: relative;
+    left: 2.5rem;
+    /*top: -35rem; */
+    font-family: "Varela Round", sans-serif;
+    background-color: aliceblue;
+    box-shadow: black 5px 4px 10px;
+    border-radius: 5px;
+    overflow: scroll;
+    grid-area: list-name;
+  }
 
-.container #list li {
-  list-style-type: none;
-  padding: 3px;
-  margin-top: 5px;
-  text-align: center;
-  background-color: rgb(216, 235, 252);
-  box-shadow: grey 5px 4px 10px;
-}
+  .container #list h1 {
+    text-align: center;
+    text-decoration: underline;
+    margin-bottom: 1.2rem;
+  }
 
-.container #info {
-  width: 21rem;
-  height: 21.5rem;
-  /* border: greenyellow dotted 3px; */
-  position: relative;
-  /* left: 28rem;
-    top: -34rem; */
-  font-family: "Varela Round", sans-serif;
-  background-color: aliceblue;
-  box-shadow: black 5px 4px 10px;
-  border-radius: 5px;
-  grid-area: list-desc;
-}
+  .container #list li {
+    list-style-type: none;
+    padding: 0.7rem;
+    margin-top: 5px;
+    text-align: center;
+    background-color: rgb(216, 235, 252);
+    box-shadow: grey 5px 4px 10px;
+  }
 
-.container #info h1 {
-  text-align: center;
-  text-decoration: underline;
-}
+  .container #info {
+    width: 21rem;
+    height: 16rem;
+    /* border: greenyellow dotted 3px; */
+    position: relative;
+    left: 0.5rem;
+    /*top: -34rem; */
+    font-family: "Varela Round", sans-serif;
+    background-color: aliceblue;
+    box-shadow: black 5px 4px 10px;
+    border-radius: 5px;
+    grid-area: list-desc;
+  }
 
-.container #info .description {
-  position: relative;
-  width: 100%;
-  height: 80%;
-}
+  .container #info h1 {
+    text-align: center;
+    text-decoration: underline;
+  }
 
-.carousel {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
+  .container #info .description {
+    position: relative;
+    width: 100%;
+    height: 80%;
+  }
 
-.carousel img {
-  width: 100%;
-  position: relative;
-  height: 80%;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
+  .carousel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
 
-.carousel_item {
-  /* background: grey; */
-  padding: 1em;
-  display: none;
-  height: 100%;
-}
+  .carousel img {
+    width: 100%;
+    position: relative;
+    height: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
 
-.carousel_item_selected {
-  display: block;
-}
+  .carousel_item {
+    /* background: grey; */
+    padding: 1em;
+    display: none;
+    height: 100%;
+  }
 
-.carousel_nav {
-  width: 100%;
-  padding: 0.3em;
-  position: absolute;
-  bottom: -0.3em;
-  text-align: center;
-  /* background-color: rgb(226, 247, 249); */
-}
+  .carousel_item_selected {
+    display: block;
+  }
 
-.carousel_button {
-  width: 10px;
-  height: 10px;
-  display: inline-block;
-  background: rgba(64, 59, 59, 0.2);
-  border-radius: 50%;
-  margin: 0 5px;
-  cursor: pointer;
-}
+  .carousel_nav {
+    width: 100%;
+    padding: 0.3em;
+    position: absolute;
+    bottom: -0.3em;
+    text-align: center;
+    /* background-color: rgb(226, 247, 249); */
+  }
 
-.carousel_button_selected {
-  background: rgba(91, 81, 81, 0.5);
-}
+  .carousel_button {
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    background: rgba(64, 59, 59, 0.2);
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+  }
 
-.curlocation {
-  transition-duration: 0.4s;
-  font-family: "Martel Sans", sans-serif;
-  font-size: 0.9em;
-  border: none;
-  border-radius: 2em;
-  color: green;
-  background-color: rgb(226, 247, 249);
-  box-shadow: rgb(10, 138, 10) -5px 5px;
-  width: 13em;
-  position: relative;
-  left: 6em;
-}
+  .carousel_button_selected {
+    background: rgba(91, 81, 81, 0.5);
+  }
 
-.curlocation:hover {
-  color: black;
-  background-color: rgb(219, 252, 255);
-}
+  #suggestion {
+    display: grid;
+    width: 80%;
+    height: 5rem;
+    grid-template-columns: 50% 50%;
+    row-gap: 15rem;
+    column-gap: 2.5rem;
+    position: relative;
+    left: 4.5rem;
+    margin-top: 1rem;
+  }
 
-.curlocation:active {
-  background-color: rgb(219, 252, 255);
-  box-shadow: rgb(9, 107, 9) -3px 4px;
-  transform: translateY(3px);
-}
+ #title{
+    display: inline-block;
+    width: 100%;
+    height: 5rem;
+    text-align: center;
+    background-color: rgb(226, 247, 249);
+    font-family: "Varela Round", sans-serif;
+    font-size: 3rem;
+    margin-top: 1rem;
+    border: dotted green 3px;
+  }
 
-.contact {
-  height: 8em;
-  width: 100%;
-  position: relative;
-  border: red solid 3px;
-}
+  #suggestion .business .img-container img {
+    height: 175px;
+    width: 175px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
 
-.contact footer {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  line-height: 10px;
-  border: blue solid 3px;
-}
+  #suggestion .business .img-container .bpic {
+    filter: blur(5px);
+    z-index: 0;
+    width: 18.5em;
+    display: block;
+    position: absolute;
+  }
 
-.contact footer a {
-  color: black;
-}
+  #suggestion .business .img-container .fpic {
+    z-index: 1;
+    position: absolute;
+    display: block;
+    margin-left: 4rem;
+  }
 
-.contact footer ul {
-  line-height: 2em;
-}
+  #suggestion .business .info {
+    position: relative; 
+    top: 140%; 
+    display: grid;
+    grid-template-areas: 
+    "header header"
+    "address review"
+    ;
+    grid-template-columns: 50% 50%;
+    column-gap: .1rem;
+  }
 
-#suggestion {
-  display: grid;
-  width: 90%;
-  height: 10rem;
-  grid-template-columns: 25% 25% 25% 25%;
-  row-gap: 15rem;
-  column-gap: 2.5rem;
-}
+  #suggestion .business .info h2 {
+    text-align: center;
+    padding-right: 1rem;
+    font-size: 2.5em;
+    grid-area: header;
+  }
 
-#suggestion .business .img-container img {
-  height: 200px;
-  width: 200px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
+  #suggestion .business .info .address {
+    font-size: 1.4em;
+    /* padding-left: .5rem; */
+    grid-area: address;
+  }
 
-#suggestion .business .img-container .bpic {
-  filter: blur(5px);
-  z-index: 0;
-  width: 21.5em;
-  display: block;
-  position: absolute;
+  #suggestion .business .info .reviews {
+    font-size: 1.4em;
+    /* padding-left: 1rem; */
+    grid-area: review;
+  }
 }
+@media screen and (min-width: 1400px){ 
+  html,
+  body {
+    height: 100%;
+    width: 100%;
+    /* font-size: 16px; */
+    margin: 0px;
+    padding: 0px;
+    position: absolute;
+    background-color: rgb(253, 235, 205);
+    overflow: scroll;
+  }
 
-#suggestion .business .img-container .fpic {
-  z-index: 1;
-  position: absolute;
-  display: block;
-  margin-left: 4rem;
-}
+  * {
+    margin: 0;
+    padding: 0;
+  }
 
-#suggestion .business .info {
-  position: relative; 
-  top: 185%; 
-  display: grid;
-  grid-template-areas: 
-  "header header"
-  "address review"
-  ;
-  grid-template-columns: 50% 50%;
-  column-gap: 2rem;
-}
+  .container .stuff {
+    grid-area: stuff;
+  }
+  .container {
+    border: rgb(4, 0, 249) dotted 3px;
+    /* height: 80%; */
+    width: 100%;
+    position: relative;
+    /* left: 0; */
+    display: grid;
+    grid-template-areas:
+      "header header header header"
+      "stuff stuff . content-l"
+      "map map map list-name"
+      "map map map list-desc"
+      ". . . .";
+    grid-template-columns: 25% 25% 25% 25%;
+    row-gap: 20px;
+  }
 
-#suggestion .business .info h2 {
-  text-align: center;
-  padding-right: 1rem;
-  font-size: 2.5em;
-  grid-area: header;
-}
+  .container .header {
+    width: 100%;
+    height: 3em;
+    background-color: rgb(226, 247, 249);
+    text-align: center;
+    font-family: "Varela Round", sans-serif;
+    font-size: 24px;
+    word-spacing: 1em;
+    border: dotted green 3px;
+    position: relative;
+    top: 0px;
+    grid-area: header;
+  }
 
-#suggestion .business .info .address {
-  font-size: 1.4em;
-  padding-left: .5rem;
-  grid-area: address;
-}
+  .container .map-instruc {
+    font-family: "Varela Round", sans-serif;
+    display: block;
+    font-size: 2.3em;
+    width: 40rem;
+    position: relative;
+    left: 10rem;
+    text-align: center;
+    /* grid-area: content-m; */
+  }
 
-#suggestion .business .info .reviews {
-  font-size: 1.4em;
-  padding-left: 1.5rem;
-  grid-area: review;
+  .container #map {
+    height: 22rem;
+    width: 60rem;
+    padding: 5rem 2rem;
+    margin-top: 3rem;
+    margin-left: 0.5rem;
+    /*  top: 10px; 
+      left: 10px;  */
+    /* border: red dotted 3px; */
+    box-shadow: black 5px 3px 10px;
+    border-radius: 5px;
+    grid-area: map;
+  }
+  .container .list-instruc {
+    font-family: "Varela Round", sans-serif;
+    /* display: inline-block; */
+    font-size: 2.3em;
+    width: 20rem;
+    position: relative;
+    right: 0.5rem;
+    text-align: center;
+    grid-area: content-l;
+  }
+
+  .container #list {
+    width: 21rem;
+    height: 15rem;
+    /* border: greenyellow dotted 3px; */
+    position: relative;
+    /* left: 28rem;
+        top: -35rem; */
+    font-family: "Varela Round", sans-serif;
+    background-color: aliceblue;
+    box-shadow: black 5px 4px 10px;
+    border-radius: 5px;
+    overflow: scroll;
+    grid-area: list-name;
+  }
+
+  .container #list h1 {
+    text-align: center;
+    text-decoration: underline;
+  }
+
+  .container #list li {
+    list-style-type: none;
+    padding: 3px;
+    margin-top: 5px;
+    text-align: center;
+    background-color: rgb(216, 235, 252);
+    box-shadow: grey 5px 4px 10px;
+  }
+
+  .container #info {
+    width: 21rem;
+    height: 21.5rem;
+    /* border: greenyellow dotted 3px; */
+    position: relative;
+    /* left: 28rem;
+      top: -34rem; */
+    font-family: "Varela Round", sans-serif;
+    background-color: aliceblue;
+    box-shadow: black 5px 4px 10px;
+    border-radius: 5px;
+    grid-area: list-desc;
+  }
+
+  .container #info h1 {
+    text-align: center;
+    text-decoration: underline;
+  }
+
+  .container #info .description {
+    position: relative;
+    width: 100%;
+    height: 80%;
+  }
+
+  .carousel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .carousel img {
+    width: 100%;
+    position: relative;
+    height: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  .carousel_item {
+    /* background: grey; */
+    padding: 1em;
+    display: none;
+    height: 100%;
+  }
+
+  .carousel_item_selected {
+    display: block;
+  }
+
+  .carousel_nav {
+    width: 100%;
+    padding: 0.3em;
+    position: absolute;
+    bottom: -0.3em;
+    text-align: center;
+    /* background-color: rgb(226, 247, 249); */
+  }
+
+  .carousel_button {
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    background: rgba(64, 59, 59, 0.2);
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+  }
+
+  .carousel_button_selected {
+    background: rgba(91, 81, 81, 0.5);
+  }
+
+  .curlocation {
+    transition-duration: 0.4s;
+    font-family: "Martel Sans", sans-serif;
+    font-size: 0.9em;
+    border: none;
+    border-radius: 2em;
+    color: green;
+    background-color: rgb(226, 247, 249);
+    box-shadow: rgb(10, 138, 10) -5px 5px;
+    width: 13em;
+    position: relative;
+    left: 6em;
+  }
+
+  .curlocation:hover {
+    color: black;
+    background-color: rgb(219, 252, 255);
+  }
+
+  .curlocation:active {
+    background-color: rgb(219, 252, 255);
+    box-shadow: rgb(9, 107, 9) -3px 4px;
+    transform: translateY(3px);
+  }
+
+  .contact {
+    height: 8em;
+    width: 100%;
+    position: relative;
+    border: red solid 3px;
+  }
+
+  .contact footer {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    line-height: 10px;
+    border: blue solid 3px;
+  }
+
+  .contact footer a {
+    color: black;
+  }
+
+  .contact footer ul {
+    line-height: 2em;
+  }
+
+  #suggestion {
+    display: grid;
+    width: 90%;
+    height: 10rem;
+    grid-template-columns: 25% 25% 25% 25%;
+    row-gap: 15rem;
+    column-gap: 2.5rem;
+  }
+
+  #suggestion .business .img-container img {
+    height: 200px;
+    width: 200px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  #suggestion .business .img-container .bpic {
+    filter: blur(5px);
+    z-index: 0;
+    width: 21.5em;
+    display: block;
+    position: absolute;
+  }
+
+  #suggestion .business .img-container .fpic {
+    z-index: 1;
+    position: absolute;
+    display: block;
+    margin-left: 4rem;
+  }
+
+  #suggestion .business .info {
+    position: relative; 
+    top: 185%; 
+    display: grid;
+    grid-template-areas: 
+    "header header"
+    "address review"
+    ;
+    grid-template-columns: 50% 50%;
+    column-gap: 2rem;
+  }
+
+  #suggestion .business .info h2 {
+    text-align: center;
+    padding-right: 1rem;
+    font-size: 2.5em;
+    grid-area: header;
+  }
+
+  #suggestion .business .info .address {
+    font-size: 1.4em;
+    padding-left: .5rem;
+    grid-area: address;
+  }
+
+  #suggestion .business .info .reviews {
+    font-size: 1.4em;
+    padding-left: 1.5rem;
+    grid-area: review;
+  }
 }
