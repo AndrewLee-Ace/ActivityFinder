@@ -30,6 +30,12 @@
         <div class="header">
             <h1>Activity Finder</h1>
         </div>
+        <form id="search" autocomplete="off">
+          <div>
+            <input type="text" placeholder="Search City, State" id="search-text">
+            <ul class="list" id="cities"></ul>
+          </div>
+        </form>
         <div class="stuff">
       <h3 class="map-instruc">
         Move to your desired location on the map and attractions based on that
@@ -69,7 +75,7 @@
 
     <div id="suggestion">
       
-      <div class="business">
+      <!-- <div class="business">
         <div class="img-container">
           <img src="./shrimp.jpg" alt="pic" class="bpic"/>
           <img src="./shrimp.jpg" alt="pic" class="fpic"/>
@@ -237,7 +243,7 @@
             <p>90 reviews</p>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
 
     <div id="contact">
@@ -251,6 +257,7 @@
 
     <!-- <script type="module" src="./JS/index.js"></script> -->
     <script type="module" src="./JS/index1.js"></script>
+    <script src="./JS/cities.js"></script>
     <script
       async
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOOarwDBwWEdcUpxFrBssT6XHSNxLeKIk&libraries=places&callback=initMap"

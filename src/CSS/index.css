@@ -238,14 +238,14 @@ font-family: 'Martel Sans', sans-serif; */
 
   #suggestion .business .info {
     position: relative; 
-    top: 140%; 
+    top: 150%; 
     display: grid;
     grid-template-areas: 
     "header header"
     "address review"
     ;
     grid-template-columns: 50% 50%;
-    column-gap: .1rem;
+    column-gap: .3rem;
   }
 
   #suggestion .business .info h2 {
@@ -256,13 +256,13 @@ font-family: 'Martel Sans', sans-serif; */
   }
 
   #suggestion .business .info .address {
-    font-size: 1.4em;
+    font-size: 1.2em;
     /* padding-left: .5rem; */
     grid-area: address;
   }
 
   #suggestion .business .info .reviews {
-    font-size: 1.4em;
+    font-size: 1.2em;
     /* padding-left: 1rem; */
     grid-area: review;
   }
@@ -326,8 +326,31 @@ font-family: 'Martel Sans', sans-serif; */
   .container .stuff {
     grid-area: stuff;
   }
+
+  .container #search {
+    width: 25rem;
+    grid-area: search;
+  }
+
+  .container #search #search-text{
+    width: 20rem;
+    position: relative; 
+    left: 2.5rem;
+    height: 1.8rem;
+    border-radius: 3em;
+  }
+
+  .container #search #cities{
+    position: relative;
+    left: 3rem;
+    overflow: scroll;
+    height: 6rem;
+    width: 14rem;
+    background-color: rgba(49, 48, 45, 0.2);
+  }
+
   .container {
-    border: rgb(4, 0, 249) dotted 3px;
+    /* border: rgb(4, 0, 249) dotted 3px; */
     /* height: 80%; */
     width: 100%;
     position: relative;
@@ -335,6 +358,7 @@ font-family: 'Martel Sans', sans-serif; */
     display: grid;
     grid-template-areas:
       "header header header header"
+      "search search . ."
       "stuff stuff . content-l"
       "map map map list-name"
       "map map map list-desc"
@@ -346,12 +370,12 @@ font-family: 'Martel Sans', sans-serif; */
   .container .header {
     width: 100%;
     height: 3em;
-    background-color: rgb(226, 247, 249);
+    background-color: rgb(223, 190, 132);
     text-align: center;
     font-family: "Varela Round", sans-serif;
     font-size: 24px;
     word-spacing: 1em;
-    border: dotted green 3px;
+    /* border: dotted green 3px; */
     position: relative;
     top: 0px;
     grid-area: header;
@@ -389,6 +413,7 @@ font-family: 'Martel Sans', sans-serif; */
     position: relative;
     right: 0.5rem;
     text-align: center;
+    visibility: visible;
     grid-area: content-l;
   }
 
@@ -518,29 +543,6 @@ font-family: 'Martel Sans', sans-serif; */
     transform: translateY(3px);
   }
 
-  .contact {
-    height: 8em;
-    width: 100%;
-    position: relative;
-    border: red solid 3px;
-  }
-
-  .contact footer {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    line-height: 10px;
-    border: blue solid 3px;
-  }
-
-  .contact footer a {
-    color: black;
-  }
-
-  .contact footer ul {
-    line-height: 2em;
-  }
-
   #suggestion {
     display: grid;
     width: 90%;
@@ -577,7 +579,7 @@ font-family: 'Martel Sans', sans-serif; */
 
   #suggestion .business .info {
     position: relative; 
-    top: 185%; 
+    top: 140%; 
     display: grid;
     grid-template-areas: 
     "header header"
@@ -590,7 +592,7 @@ font-family: 'Martel Sans', sans-serif; */
   #suggestion .business .info h2 {
     text-align: center;
     padding-right: 1rem;
-    font-size: 2.5em;
+    font-size: 2em;
     grid-area: header;
   }
 
@@ -616,6 +618,7 @@ font-family: 'Martel Sans', sans-serif; */
     width: 100%;
     padding-top: 1.3rem;
     color: #000;
+    visibility: hidden;
   }
 
   #thing #in-thing{
