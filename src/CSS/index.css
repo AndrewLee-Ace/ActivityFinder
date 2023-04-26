@@ -36,12 +36,12 @@ font-family: 'Martel Sans', sans-serif; */
   .container .header{
     width: 100%;
     height: 3em;
-    background-color: rgb(226, 247, 249);
+    background-color: rgb(223, 190, 132);
     text-align: center;
     font-family: "Varela Round", sans-serif;
     font-size: 24px;
     word-spacing: 1em;
-    border: dotted green 3px;
+    /* border: dotted green 3px; */
     position: relative;
     top: 0px;
     grid-area: header;
@@ -188,14 +188,16 @@ font-family: 'Martel Sans', sans-serif; */
 
   #suggestion {
     display: grid;
-    width: 80%;
-    height: 5rem;
+    width: 82%;
+    height: 18rem;
     grid-template-columns: 50% 50%;
     row-gap: 15rem;
     column-gap: 2.5rem;
     position: relative;
     left: 4.5rem;
     margin-top: 1rem;
+    overflow: scroll;
+    margin-bottom: 2em;
   }
 
  #title{
@@ -203,11 +205,11 @@ font-family: 'Martel Sans', sans-serif; */
     width: 100%;
     height: 5rem;
     text-align: center;
-    background-color: rgb(226, 247, 249);
+    background-color: rgb(223, 190, 132, .3);
     font-family: "Varela Round", sans-serif;
-    font-size: 3rem;
+    font-size: 2.8rem;
     margin-top: 1rem;
-    border: dotted green 3px;
+    /* border: dotted green 3px; */
   }
 
   #suggestion .business .img-container img {
@@ -264,6 +266,44 @@ font-family: 'Martel Sans', sans-serif; */
     /* padding-left: 1rem; */
     grid-area: review;
   }
+
+   #thing {
+    position: absolute;
+    /* bottom: 0; */
+    left: 0;
+    right: 0;
+    background-color: rgb(215, 189, 145);
+    height: auto;
+    width: 100%;
+    padding-top: 1.3rem;
+    color: #000;
+  }
+
+  #thing #in-thing{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+#thing #in-thing h3{
+  font-size: 2.1rem;
+  font-weight: 500;
+  text-transform: capitalize;
+  line-height: 1rem;
+}
+
+#thing #in-thing p{
+  max-width: 31.25rem;
+  margin: 1rem auto;
+  line-height: 2.2rem;
+  font-size: 1.1rem;
+  color: #78690b;
+}
+
+
+
 }
 @media screen and (min-width: 1400px){ 
   html,
@@ -508,6 +548,7 @@ font-family: 'Martel Sans', sans-serif; */
     grid-template-columns: 25% 25% 25% 25%;
     row-gap: 15rem;
     column-gap: 2.5rem;
+    overflow: visible;
   }
 
   #suggestion .business .img-container img {
@@ -564,4 +605,39 @@ font-family: 'Martel Sans', sans-serif; */
     padding-left: 1.5rem;
     grid-area: review;
   }
+
+  #thing {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgb(215, 189, 145);
+    height: auto;
+    width: 100%;
+    padding-top: 1.3rem;
+    color: #000;
+  }
+
+  #thing #in-thing{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+#thing #in-thing h3{
+  font-size: 2.1rem;
+  font-weight: 500;
+  text-transform: capitalize;
+  line-height: 1rem;
+}
+
+#thing #in-thing p{
+  max-width: 31.25rem;
+  margin: 1rem auto;
+  line-height: 2.2rem;
+  font-size: 1.1rem;
+  color: #78690b;
+}
 }

@@ -90,6 +90,7 @@ function initMap(position) {
   const infowindow = new google.maps.InfoWindow();
 
   //for search by query
+
   let request = {
     query: "eiffel tower",
     fields: [
@@ -105,6 +106,7 @@ function initMap(position) {
   };
 
   //for search by nearby search
+
   // let request = {
   //   location: manhattan,
   //   radius: '500',
@@ -114,6 +116,7 @@ function initMap(position) {
   const service = new google.maps.places.PlacesService(map);
 
   service.findPlaceFromQuery(request, function (results, status) {
+    // service.nearbySearch(request, function (results, status) {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
       for (let i = 0; i < results.length; i++) {
         const marker = new google.maps.Marker({
@@ -165,7 +168,7 @@ function initMap(position) {
       }
       map.setCenter(results[0].geometry.location);
 
-      // console.log(place);
+      console.log(place);
     }
 
     const items = carousel.querySelectorAll(".carousel_item");
@@ -208,43 +211,66 @@ function initMap(position) {
   //uncomment the following
 
 
-  // search('italian', 'paris', 'best_match').then(businesses => {
-  //   businesses.forEach((business) => {
-  //     let bodyDiv = document.createElement('div');
-  //     let imgDiv = document.createElement('div');
-  //     let infoDiv = document.createElement('div');
-  //     let addressDiv = document.createElement('div');
-  //     let reviewDiv = document.createElement('div');
-  //     let img = document.createElement('img');
-  //     let headings = document.createElement('h2');
+  search('italian', 'paris', 'best_match').then(businesses => {
+    businesses.forEach((business) => {
+      console.log(business)
+      let bodyDiv = document.createElement('div');
+      let imgDiv = document.createElement('div');
+      let infoDiv = document.createElement('div');
+      let addressDiv = document.createElement('div');
+      let reviewDiv = document.createElement('div');
+      let img1 = document.createElement('img');
+      let img2 = document.createElement('img');
+      let headings = document.createElement('h2');
+      let address = document.createElement('p');
+      let city = document.createElement('p');
+      let zipCode = document.createElement('p');
+      let category = document.createElement('h3');
+      let rating = document.createElement('h3');
+      let review = document.createElement('p');
       
-      
-  //     suggestion.appendChild(bodyDiv);
-  //     bodyDiv.appendChild(imgDiv);
-  //     imgDiv.appendChild(img);
-  //     bodyDiv.appendChild(headings);
-  //     bodyDiv.appendChild(infoDiv);
-  //     infoDiv.appendChild(addressDiv);
-  //     infoDiv.appendChild(reviewDiv);
+      suggestion.appendChild(bodyDiv);
+      bodyDiv.appendChild(imgDiv);
+      imgDiv.appendChild(img1);
+      imgDiv.appendChild(img2)
+      bodyDiv.appendChild(infoDiv);
+      infoDiv.appendChild(headings);
+      infoDiv.appendChild(addressDiv);
+      addressDiv.appendChild(address);
+      addressDiv.appendChild(city);
+      addressDiv.appendChild(zipCode);
+      infoDiv.appendChild(reviewDiv);
+      reviewDiv.appendChild(category);
+      reviewDiv.appendChild(rating);
+      reviewDiv.appendChild(review);
 
-  //     bodyDiv.setAttribute('class', 'business');
+      bodyDiv.setAttribute('class', 'business');
 
-  //     imgDiv.setAttribute('class', 'img_container');
-  //     img.setAttribute('src', business.imageSrc);
+      imgDiv.setAttribute('class', 'img-container');
+      img1.setAttribute('src', business.imageSrc);
+      img1.setAttribute('class', 'bpic');
+      img2.setAttribute('src', business.imageSrc);
+      img2.setAttribute('class', 'fpic');
 
-  //     headings.innerHTML = business.name;
+      headings.innerHTML = business.name;
+      address.innerHTML = business.address;
+      city.innerHTML = business.city;
+      zipCode.innerHTML = business.zipCode;
+      category.innerHTML = business.category;
+      rating.innerHTML = `Rating: ${business.rating}`;
+      review.innerHTML = `${business.reviewCount} Reviews`;
 
-  //     infoDiv.setAttribute('class', 'info');
+      infoDiv.setAttribute('class', 'info');
 
-  //     addressDiv.setAttribute('class', 'address');
+      addressDiv.setAttribute('class', 'address');
 
-  //     reviewDiv.setAttribute('class', 'review');
+      reviewDiv.setAttribute('class', 'review');
 
-  //     // businessArr.push(business);
-  //     // console.log(business.name);
-  //   })
+      // businessArr.push(business);
+      // console.log(business.name);
+    })
 
-  // })
+  })
 
 
   businessArr.forEach(business => {
