@@ -44692,22 +44692,26 @@ const cities = [
 "Nordvik",
 ];
 
-document.getElementById('search-text').addEventListener('input', input =>{
+document.getElementById('search-text').addEventListener('input', () =>{
     closeList();
     for (let i of cities){
       if (
         i.toLowerCase().startsWith(document.getElementById('search-text').value.toLowerCase()) &&
         document.getElementById('search-text').value != ""
       ) {
+        document.getElementById('cities').style.visibility = 'visible'
         let listItem = document.createElement("li");
   
         listItem.classList.add("list-items");
         listItem.style.cursor = "pointer";
-        listItem.setAttribute("onclick", "displayStates('" + i + "')");
+        listItem.setAttribute("onclick", "displayStates('" + i + "'); save('" + i + "')");
   
         let word = `<b> ${i.substr(0, document.getElementById('search-text').value.length)}</b>`;
         word += i.substr(document.getElementById('search-text').value.length);
         listItem.innerHTML = word;
+        let search = i.substr(0, document.getElementById('search-text').value.length);
+        search += i.substr(document.getElementById('search-text').value.length);
+        
         document.querySelector(".list").appendChild(listItem);
       }
     }
@@ -44716,9 +44720,189 @@ document.getElementById('search-text').addEventListener('input', input =>{
   function displayStates(value){
     document.getElementById('search-text').value = value;
   }
-  
-  function closeList(){
-    let items = document.querySelectorAll(".list-items");
-    items.forEach(item => item.remove());
+
+  function save(value){
+    console.log(value)
+    closeList();
+    // try{
+    //     // throw new Error("No restaurants found");
+    //   search('italian', value, 'best_match').then(businesses => {
+    //     businesses.forEach((business) => {
+    //       console.log(business)
+    //       let bodyDiv = document.createElement('div');
+    //       let imgDiv = document.createElement('div');
+    //       let infoDiv = document.createElement('div');
+    //       let addressDiv = document.createElement('div');
+    //       let reviewDiv = document.createElement('div');
+    //       let img1 = document.createElement('img');
+    //       let img2 = document.createElement('img');
+    //       let headings = document.createElement('h2');
+    //       let address = document.createElement('p');
+    //       let city = document.createElement('p');
+    //       let zipCode = document.createElement('p');
+    //       let category = document.createElement('h3');
+    //       let rating = document.createElement('h3');
+    //       let review = document.createElement('h3');
+    
+    //       suggestion.appendChild(bodyDiv);
+    //       bodyDiv.appendChild(imgDiv);
+    //       imgDiv.appendChild(img1);
+    //       imgDiv.appendChild(img2)
+    //       bodyDiv.appendChild(infoDiv);
+    //       infoDiv.appendChild(headings);
+    //       infoDiv.appendChild(addressDiv);
+    //       addressDiv.appendChild(address);
+    //       addressDiv.appendChild(city);
+    //       addressDiv.appendChild(zipCode);
+    //       infoDiv.appendChild(reviewDiv);
+    //       reviewDiv.appendChild(category);
+    //       reviewDiv.appendChild(rating);
+    //       reviewDiv.appendChild(review);
+    
+    //       bodyDiv.setAttribute('class', 'business');
+    
+    //       imgDiv.setAttribute('class', 'img-container');
+    //       img1.setAttribute('src', business.imageSrc);
+    //       img1.setAttribute('alt', 'No Image Source');
+    //       img1.setAttribute('class', 'bpic');
+    //       img2.setAttribute('src', business.imageSrc);
+    //       img2.setAttribute('alt', 'No Image Source');
+    //       img2.setAttribute('class', 'fpic');
+    
+    //       headings.innerHTML = business.name;
+    //       address.innerHTML = business.address;
+    //       city.innerHTML = business.city;
+    //       zipCode.innerHTML = business.zipCode;
+    //       category.innerHTML = business.category;
+    //       rating.innerHTML = `Rating: ${business.rating}`;
+    //       review.innerHTML = `${business.reviewCount} Reviews`;
+    
+    //       infoDiv.setAttribute('class', 'info');
+    
+    //       addressDiv.setAttribute('class', 'address');
+    
+    //       reviewDiv.setAttribute('class', 'review');
+    //     })
+    
+    //   })
+    //   }
+    //   catch(e){
+    //     let errorDiv = document.createElement('div');
+    //     let error = document.createElement('h1');
+    //     let errorMessage = 'Error: ' + e.message;
+    //     error.innerHTML = errorMessage;
+    //     errorDiv.setAttribute('class', 'error');
+    //     document.getElementById('title').appendChild(errorDiv);
+    //     errorDiv.appendChild(error);
+    //   }
   }
   
+  function closeList(){
+    document.getElementById('cities').style.visibility = 'hidden'
+    let items = document.querySelectorAll(".list-items");
+    items.forEach(item => item.remove());
+  }  
+
+const apiKey =
+  "RNx77U6BnXwS3g7NhN7maiClddv-59QHvokUq5qZIUNY5nbPcfURR52CmpBsYhUE01k5oqlcuLxAEs1gcP8Nb0c8fTUR4zq_BzYRIVfaZTMjWXkfA3FDt5_V_HLKY3Yx";
+
+async function search(term, location, sortBy) {
+    const response = await fetch(
+      `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${term}&location=${location}&sort_by=${sortBy}`,
+      {
+        headers: {
+          Authorization: `Bearer ${apiKey}`,
+        },
+      }
+    );
+  
+    const jsonResponse = await response.json();
+  
+    if (jsonResponse.businesses) {
+      return jsonResponse.businesses.map((business) => {
+        return {
+          id: business.id,
+          imageSrc: business.image_url,
+          name: business.name,
+          address: business.location.address1,
+          city: business.location.city,
+          state: business.location.state,
+          zipCode: business.location.zip_code,
+          category: business.categories[0].title,
+          rating: business.rating,
+          reviewCount: business.review_count,
+        };
+      });
+    }
+  }
+
+//   try{
+//     // throw new Error("No restaurants found");
+//   search('italian', 'paris', 'best_match').then(businesses => {
+//     businesses.forEach((business) => {
+//       console.log(business)
+//       let bodyDiv = document.createElement('div');
+//       let imgDiv = document.createElement('div');
+//       let infoDiv = document.createElement('div');
+//       let addressDiv = document.createElement('div');
+//       let reviewDiv = document.createElement('div');
+//       let img1 = document.createElement('img');
+//       let img2 = document.createElement('img');
+//       let headings = document.createElement('h2');
+//       let address = document.createElement('p');
+//       let city = document.createElement('p');
+//       let zipCode = document.createElement('p');
+//       let category = document.createElement('h3');
+//       let rating = document.createElement('h3');
+//       let review = document.createElement('h3');
+
+//       suggestion.appendChild(bodyDiv);
+//       bodyDiv.appendChild(imgDiv);
+//       imgDiv.appendChild(img1);
+//       imgDiv.appendChild(img2)
+//       bodyDiv.appendChild(infoDiv);
+//       infoDiv.appendChild(headings);
+//       infoDiv.appendChild(addressDiv);
+//       addressDiv.appendChild(address);
+//       addressDiv.appendChild(city);
+//       addressDiv.appendChild(zipCode);
+//       infoDiv.appendChild(reviewDiv);
+//       reviewDiv.appendChild(category);
+//       reviewDiv.appendChild(rating);
+//       reviewDiv.appendChild(review);
+
+//       bodyDiv.setAttribute('class', 'business');
+
+//       imgDiv.setAttribute('class', 'img-container');
+//       img1.setAttribute('src', business.imageSrc);
+//       img1.setAttribute('class', 'bpic');
+//       img2.setAttribute('src', business.imageSrc);
+//       img2.setAttribute('class', 'fpic');
+
+//       headings.innerHTML = business.name;
+//       address.innerHTML = business.address;
+//       city.innerHTML = business.city;
+//       zipCode.innerHTML = business.zipCode;
+//       category.innerHTML = business.category;
+//       rating.innerHTML = `Rating: ${business.rating}`;
+//       review.innerHTML = `${business.reviewCount} Reviews`;
+
+//       infoDiv.setAttribute('class', 'info');
+
+//       addressDiv.setAttribute('class', 'address');
+
+//       reviewDiv.setAttribute('class', 'review');
+//     })
+
+//   })
+//   }
+//   catch(e){
+//     let errorDiv = document.createElement('div');
+//     let error = document.createElement('h1');
+//     let errorMessage = 'Error: ' + e.message;
+//     error.innerHTML = errorMessage;
+//     errorDiv.setAttribute('class', 'error');
+//     document.getElementById('title').appendChild(errorDiv);
+//     errorDiv.appendChild(error);
+//   }
+

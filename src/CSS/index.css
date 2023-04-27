@@ -333,20 +333,23 @@ font-family: 'Martel Sans', sans-serif; */
   }
 
   .container #search #search-text{
-    width: 20rem;
+    width: 30rem;
     position: relative; 
     left: 2.5rem;
-    height: 1.8rem;
+    height: 3rem;
     border-radius: 3em;
+    font-size: 1.4rem;
   }
 
   .container #search #cities{
-    position: relative;
+    position: absolute;
     left: 3rem;
     overflow: scroll;
     height: 6rem;
-    width: 14rem;
+    width: 8.5rem;
     background-color: rgba(49, 48, 45, 0.2);
+    visibility: hidden;
+    font-size: 1.4rem;
   }
 
   .container {
@@ -409,7 +412,7 @@ font-family: 'Martel Sans', sans-serif; */
     font-family: "Varela Round", sans-serif;
     /* display: inline-block; */
     font-size: 2.3em;
-    width: 20rem;
+    width: 15rem;
     position: relative;
     right: 0.5rem;
     text-align: center;
@@ -424,6 +427,7 @@ font-family: 'Martel Sans', sans-serif; */
     position: relative;
     /* left: 28rem;
         top: -35rem; */
+    left: 0.4rem;
     font-family: "Varela Round", sans-serif;
     background-color: aliceblue;
     box-shadow: black 5px 4px 10px;
@@ -551,6 +555,7 @@ font-family: 'Martel Sans', sans-serif; */
     row-gap: 15rem;
     column-gap: 2.5rem;
     overflow: visible;
+    left: 0;
   }
 
   #suggestion .business .img-container img {
@@ -642,5 +647,11 @@ font-family: 'Martel Sans', sans-serif; */
   line-height: 2.2rem;
   font-size: 1.1rem;
   color: #78690b;
+}
+
+.error{
+  position: relative;
+  top: 3rem;
+  text-align: center;
 }
 }

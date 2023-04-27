@@ -16,9 +16,9 @@
 // const x = require('./index');
 
 
-const apiKey =
-  "RNx77U6BnXwS3g7NhN7maiClddv-59QHvokUq5qZIUNY5nbPcfURR52CmpBsYhUE01k5oqlcuLxAEs1gcP8Nb0c8fTUR4zq_BzYRIVfaZTMjWXkfA3FDt5_V_HLKY3Yx";
-// export const lat = 6;
+// const apiKey =
+//   "RNx77U6BnXwS3g7NhN7maiClddv-59QHvokUq5qZIUNY5nbPcfURR52CmpBsYhUE01k5oqlcuLxAEs1gcP8Nb0c8fTUR4zq_BzYRIVfaZTMjWXkfA3FDt5_V_HLKY3Yx";
+// // export const lat = 6;
 let lng;
 let map;
 
@@ -41,46 +41,49 @@ let suggestion = document.getElementById("suggestion");
 
 //  navigator.geolocation.getCurrentPosition(initMap);
 
-async function search(term, location, sortBy) {
-  const response = await fetch(
-    `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${term}&location=${location}&sort_by=${sortBy}`,
-    {
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-      },
-    }
-  );
+// async function search(term, location, sortBy) {
+//   const response = await fetch(
+//     `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${term}&location=${location}&sort_by=${sortBy}`,
+//     {
+//       headers: {
+//         Authorization: `Bearer ${apiKey}`,
+//       },
+//     }
+//   );
 
-  const jsonResponse = await response.json();
+//   const jsonResponse = await response.json();
 
-  if (jsonResponse.businesses) {
-    return jsonResponse.businesses.map((business) => {
-      return {
-        id: business.id,
-        imageSrc: business.image_url,
-        name: business.name,
-        address: business.location.address1,
-        city: business.location.city,
-        state: business.location.state,
-        zipCode: business.location.zip_code,
-        category: business.categories[0].title,
-        rating: business.rating,
-        reviewCount: business.review_count,
-      };
-    });
-  }
-}
+//   if (jsonResponse.businesses) {
+//     return jsonResponse.businesses.map((business) => {
+//       return {
+//         id: business.id,
+//         imageSrc: business.image_url,
+//         name: business.name,
+//         address: business.location.address1,
+//         city: business.location.city,
+//         state: business.location.state,
+//         zipCode: business.location.zip_code,
+//         category: business.categories[0].title,
+//         rating: business.rating,
+//         reviewCount: business.review_count,
+//       };
+//     });
+//   }
+// }
 
 /*
 Method to initialize a google map object 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Assigns map variable its position and location on page to map id
 */
+
 function initMap(position) {
   const manhattan = new google.maps.LatLng(
     40.737661129048384,
     -73.98407565617671
   );
+
+  // console.log(document.getElementById('search-text').value)
 
   const map = new google.maps.Map(document.getElementById("map"), {
     center: manhattan,
@@ -92,7 +95,7 @@ function initMap(position) {
   //for search by query
 
   let request = {
-    query: "eiffel tower",
+    query: "New York",
     fields: [
       "name",
       "geometry",
@@ -123,12 +126,11 @@ function initMap(position) {
           position: results[i].geometry.location,
           map,
         });
-        // console.log(results[i].html_attributions);
+       
         marker.addListener("click", () => {
           infowindow.setContent(
-            `<strong>${results[i].name}</strong> <br> ${results[
-              i
-            ].photos[0].getUrl()}` || "place"
+            `<strong>${results[i].name}</strong> <br> ${results[i].formatted_address
+            }` || "place"
           );
           infowindow.open({
             anchor: marker,
@@ -136,18 +138,15 @@ function initMap(position) {
           });
         });
 
-        console.log(results[i]);
-
+        // console.log(results[i]);
+        
         place = {
           placeAddress: results[i].formatted_address,
           placeName: results[i].name,
           placeStatus: results[i].business_status,
           placePhoto: [
-            // results[i].photos[0].getUrl({ maxWidth: 1000, maxHeight: 1000 }),
+            results[i].photos[0].getUrl()
           ],
-          // [results[i].photos.forEach(photo => {
-          //   photo.getUrl({maxWidth: 100, maxHeight: 100});
-          // })]
         };
 
         let carouselDiv = document.createElement("div");
@@ -155,21 +154,31 @@ function initMap(position) {
 
         let image = document.createElement("img");
         image.setAttribute("alt", place.placeName);
-        image.setAttribute("src", place.placePhoto);
+        try {
+          image.setAttribute("src", place.placePhoto);
+        } catch (error) {
+          console.log('Cannot load image');
+        }
+        
 
         carouselDiv.appendChild(image);
         carousel.appendChild(carouselDiv);
 
         let activityDiv = document.createElement("div");
         let activity = document.createElement("li");
-        activity.innerHTML = place.placeName;
+        let link = document.createElement("a");
+        link.setAttribute("href", "");
+        link.setAttribute("target", "_blank");
+        activity.appendChild(link);
+        link.innerHTML = place.placeName;
 
         activityDiv.appendChild(activity);
         activityList.appendChild(activityDiv);
+
       }
       map.setCenter(results[0].geometry.location);
 
-      console.log(place);
+      // console.log(place);
     }
 
     const items = carousel.querySelectorAll(".carousel_item");
@@ -209,7 +218,9 @@ function initMap(position) {
   });
 
   //uncomment the following
-
+  
+  // try{
+  //   // throw new Error("No restaurants found");
   // search('italian', 'paris', 'best_match').then(businesses => {
   //   businesses.forEach((business) => {
   //     console.log(business)
@@ -264,82 +275,19 @@ function initMap(position) {
   //     addressDiv.setAttribute('class', 'address');
 
   //     reviewDiv.setAttribute('class', 'review');
-
-  //     // businessArr.push(business);
-  //     // console.log(business.name);
   //   })
 
   // })
-
-  businessArr.forEach((business) => {
-    // console.log(business.)
-    // <div class="Business">
-    //             <div class="image-container">
-    //                 <img src={business.imageSrc} alt=''/>
-    //             </div>
-    //             <h2>{business.name}</h2>
-    //             <div class="Business-information">
-    //                 <div class="Business-address">
-    //                     <p>{business.address}</p>
-    //                     <p>{business.city}</p>
-    //                     <p>{business.state} {business.zipCode}</p>
-    //                 </div>
-    //                 <div class="Business-reviews">
-    //                     <h3>{business.category}</h3>
-    //                     <h3 class="rating">{business.rating} stars</h3>
-    //                      <p>90 reviews</p>
-    //                 </div>
-    //             </div>
-    //         </div>
-  });
-
-  // let request1 = {
-  //   query: 'washington square park',
-  //   fields: ['name', 'geometry', 'business_status',  'formatted_address','photos'],
-  // };
-
-  // service.findPlaceFromQuery(request1, function(results, status) {
-  //   if (status === google.maps.places.PlacesServiceStatus.OK){
-  //     for (let i = 0; i < results.length; i++){
-  //       const marker = new google.maps.Marker({
-  //         position: results[i].geometry.location,
-  //         map,
-  //         // icon: results[i].photos[0].getUrl({maxWidth: 100, maxHeight: 100}),
-  //       });
-
-  //       marker.addListener("click", () => {
-  //         infowindow.setContent( results[i].name|| "place");
-  //         infowindow.open({
-  //           anchor: marker,
-  //           map,
-  //         });
-  //       });
-  //       // console.log(results[i]);
-  //     }
-
-  //     place = {
-  //       placeAddress: results[0].formatted_address,
-  //       placeName: results[0].name,
-  //       placeStatus: results[0].business_status
-  //     };
-
-  //     console.log(place);
-
-  //   }
-  // })
-
-  // const marker = new google.maps.Marker({
-  //   position: manhattan,
-  //   map,
-  //   title: "3rd Ave & E 21st St",
-  // });
-
-  // marker.addListener("click", () => {
-  //   infowindow.open({
-  //     anchor: marker,
-  //     map,
-  //   });
-  // });
+  // }
+  // catch(e){
+  //   let errorDiv = document.createElement('div');
+  //   let error = document.createElement('h1');
+  //   let errorMessage = 'Error: ' + e.message;
+  //   error.innerHTML = errorMessage;
+  //   errorDiv.setAttribute('class', 'error');
+  //   document.getElementById('title').appendChild(errorDiv);
+  //   errorDiv.appendChild(error);
+  // }
 }
 
 //////////////////////////////// //////////////////////////////////
@@ -390,5 +338,9 @@ current location as its center.
 //           zoom: 13
 //       }
 //   }
+try {
+  window.initMap = initMap;
+} catch{
+  alert('Error loading page: please reload the page')
+}
 
-window.initMap = initMap;
