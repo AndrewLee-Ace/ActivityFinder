@@ -327,21 +327,54 @@ font-family: 'Martel Sans', sans-serif; */
     grid-area: stuff;
   }
 
-  .container #search {
-    width: 25rem;
-    grid-area: search;
+  .container #sort .sort-list{
+    position: absolute;
+    width: 8rem;
+    height: 2rem;
+    border-radius: 5rem;
+    transform: translate(33rem, -2.4rem);
+    grid-area: sort;
+  }
+  .container #sort .sort-list-label{
+    position: absolute;
+    width: 8rem;
+    height: 2rem;
+    border-radius: 5rem;
+    transform: translate(33.2rem, -3.5rem);
   }
 
-  .container #search #search-text{
+  .container #type .food{
+    position: absolute;
+    width: 8rem;
+    height: 2rem;
+    border-radius: 5rem;
+    transform: translate(42rem, -2.4rem);
+    grid-area: sort;
+  }
+  .container #type .food-label{
+    position: absolute;
+    width: 8rem;
+    height: 2rem;
+    border-radius: 5rem;
+    transform: translate(42.2rem, -3.5rem);
+  }
+
+  .container #form #search{
+    width: 25rem;
+    
+  }
+
+  .container #form #search #search-text{
     width: 30rem;
     position: relative; 
     left: 2.5rem;
     height: 3rem;
     border-radius: 3em;
     font-size: 1.4rem;
+    grid-area: search;
   }
 
-  .container #search #cities{
+  .container #form #search #cities{
     position: absolute;
     left: 3rem;
     overflow: scroll;

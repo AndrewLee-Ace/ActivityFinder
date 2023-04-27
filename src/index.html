@@ -30,10 +30,47 @@
         <div class="header">
             <h1>Activity Finder</h1>
         </div>
-        <form id="search" autocomplete="off">
-          <div>
+        <form id="form" autocomplete="off">
+          <div id="search">
             <input type="text" placeholder="Search City" id="search-text">
             <ul class="list" id="cities"></ul>
+          </div>
+
+          <div id="sort">
+            <label for="Sort-By" class="sort-list-label">Sort Search By</label>
+            <select name="Sort-By" class="sort-list" id="sort-list">
+              <option value="best_match">best_match</option>
+              <option value="rating">rating</option>
+              <option value="review_count">review_count</option>
+            </select>
+          </div>
+          
+          <div id="type">
+            <label for="Type" class="food-label">Cuisine Type</label>
+            <select name="Type" class="food" id="food">
+              <option value="Indian">Indian</option>
+              <option value="Thai">Thai</option>
+              <option value="American">American</option>
+              <option value="Punjabi">Punjabi</option>
+              <option value="Middle Eastern">Middle Eastern</option>
+              <option value="European">European</option>
+              <option value="Gujarati">Gujarati</option>
+              <option value="Cuban">Cuban</option>
+              <option value="Chinese">Chinese</option>
+              <option value="Japanese">Japanese</option>
+              <option value="French">French</option>
+              <option value="Soul">Soul</option>
+              <option value="Caribbean">Caribbean</option>
+              <option value="German">German</option>
+              <option value="Lebanese">Lebanese</option>
+              <option value="Italian">Italian</option>
+              <option value="Mexican">Mexican</option>
+              <option value="Greek">Greek</option>
+              <option value="Spanish">Spanish</option>
+              <option value="Kashmiri">Kashmiri</option>
+              <option value="Jiangsu">Jiangsu</option>
+              <option value="Mediterranean">Mediterranean</option>
+            </select>
           </div>
         </form>
         <div class="stuff">
