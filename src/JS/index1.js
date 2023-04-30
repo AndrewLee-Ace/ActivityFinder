@@ -49,12 +49,12 @@ function initMap(position) {
     ],
   };
 
-  console.log(request.query);
+  // console.log(request.query);
 
   //for search by nearby search
 
   // let request = {
-  //   location: startPos,  //query LatLng Object
+  //   location: startPos, //query LatLng Object
   //   radius: "500",
   //   type: ["tourist_attraction"],
   // };
@@ -65,239 +65,259 @@ function initMap(position) {
   });
 
   const service = new google.maps.places.PlacesService(map);
-  
+
   document.getElementById("search-text").addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
       searchAddress = document.getElementById("search-text").value;
       // console.log(searchAddress)
 
-      request.query = searchAddress;
-      
-      try{
-        while(document.getElementById('names').firstChild){
-            document.getElementById('names').removeChild(document.getElementById('names').firstChild);
-        }
-    }catch(e){
-        console.log(e)
-    }
+      // request.query = searchAddress;
 
-    try{
-        while(document.getElementById('carousel').firstChild){
-            document.getElementById('carousel').removeChild(document.getElementById('carousel').firstChild);
+      try {
+        while (document.getElementById("names").firstChild) {
+          document.getElementById("names").removeChild(document.getElementById("names").firstChild);
         }
-    }catch(e){
-        console.log(e)
-    }
+      } catch (e) {
+        console.log(e);
+      }
 
-      service.findPlaceFromQuery(request, function (results, status) {
-          if (status === google.maps.places.PlacesServiceStatus.OK) {
-            for (let i = 0; i < results.length; i++) {
-              const marker = new google.maps.Marker({
-                position: results[i].geometry.location,
-                map,
-              });
-      
-              marker.addListener("click", () => {
-                infowindow.setContent(
-                  `<strong>${results[i].name}</strong> <br> ${results[i].formatted_address}` ||
-                    "place"
-                );
-                infowindow.open({
-                  anchor: marker,
-                  map,
-                });
-              });
-      
-              // console.log(results[i]);
-              try {
-                place = {
-                  placeAddress: results[i].formatted_address,
-                  placeName: results[i].name,
-                  placeStatus: results[i].business_status,
-                  placePhoto: [results[i].photos[0].getUrl()],
-                };
-              } catch (error) {
-                console.log("Cannot load image");
-              }
-      
-              let carouselDiv = document.createElement("div");
-              carouselDiv.setAttribute("class", "carousel_item");
-      
-              let image = document.createElement("img");
-              image.setAttribute("alt", place.placeName);
-              try {
-                image.setAttribute("src", place.placePhoto);
-              } catch (error) {
-                console.log("Cannot load image");
-              }
-      
-              carouselDiv.appendChild(image);
-              carousel.appendChild(carouselDiv);
-      
-              let activityDiv = document.createElement("div");
-              let activity = document.createElement("li");
-              let link = document.createElement("a");
-              link.setAttribute("href", "");
-              link.setAttribute("target", "_blank");
-              activity.appendChild(link);
-              link.innerHTML = place.placeName;
-      
-              activityDiv.appendChild(activity);
-              activityList.appendChild(activityDiv);
-            }
-            map.setCenter(results[0].geometry.location);
-      
-            // console.log(place);
-          }
-      
-          const items = carousel.querySelectorAll(".carousel_item");
-          const buttonsHTML = Array.from(items, () => {
-            return `<span class="carousel_button"></span>`;
-          });
-      
-          carousel.insertAdjacentHTML(
-            "beforeend",
-            `
-              <div class="carousel_nav">
-                ${buttonsHTML.join("")}
-              </div>`
-          );
-      
-          const buttons = carousel.querySelectorAll(".carousel_button");
-          buttons.forEach((button, i) => {
-            button.addEventListener("click", () => {
-              //unselect all items
-              items.forEach((item) =>
-                item.classList.remove("carousel_item_selected")
-              );
-              buttons.forEach((button) =>
-                button.classList.remove("carousel_button_selected")
-              );
-      
-              items[i].classList.add("carousel_item_selected");
-              button.classList.add("carousel_button_selected");
-            });
-          });
-      
-          if (items.length > 0) {
-            //selects 1st item on page load
-            items[0].classList.add("carousel_item_selected");
-            buttons[0].classList.add("carousel_button_selected");
-          }
-        });
+      try {
+        while (document.getElementById("carousel").firstChild) {
+          document.getElementById("carousel").removeChild(document.getElementById("carousel").firstChild);
+        }
+      } catch (e) {
+        console.log(e);
+      }
+
+      searchQuery();  //GET SINGULAR SEARCH. UNCOMMENT SEARCH BY QUERY
 
       geocoder.geocode({ address: searchAddress }, function (results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
           latlng = new google.maps.LatLng(results[0].geometry.location);
           // console.log(latlng.lat);
-          
 
+          request.location = latlng;
         }
       });
+      // searchNearby();  //GET AREA SEARCH. UNCOMMENT NEARBY SEARCH
     }
   });
 
-  
+  // searchNearby(); //GET AREA SEARCH. UNCOMMENT NEARBY SEARCH
 
-  
 
-  service.findPlaceFromQuery(request, function (results, status) {
-  // service.nearbySearch(request, function (results, status) {
-    if (status === google.maps.places.PlacesServiceStatus.OK) {
-      for (let i = 0; i < results.length; i++) {
-        const marker = new google.maps.Marker({
-          position: results[i].geometry.location,
-          map,
-        });
+  searchQuery();  //GET SNGULAR SEARCH. UNCOMMENT SEARCH BY QUERY
 
-        marker.addListener("click", () => {
-          infowindow.setContent(
-            `<strong>${results[i].name}</strong> <br> ${results[i].formatted_address}` ||
-              "place"
-          );
-          infowindow.open({
-            anchor: marker,
+
+  function searchQuery() {
+    service.findPlaceFromQuery(request, function (results, status) {
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
+        for (let i = 0; i < results.length; i++) {
+          const marker = new google.maps.Marker({
+            position: results[i].geometry.location,
             map,
           });
-        });
 
-        // console.log(results[i]);
-        try {
-          place = {
-            placeAddress: results[i].formatted_address,
-            placeName: results[i].name,
-            placeStatus: results[i].business_status,
-            placePhoto: [results[i].photos[0].getUrl()],
-          };
-        } catch (error) {
-          console.log("Cannot load image");
+          marker.addListener("click", () => {
+            infowindow.setContent(
+              `<strong>${results[i].name}</strong> <br> ${results[i].formatted_address}` ||
+              "place"
+            );
+            infowindow.open({
+              anchor: marker,
+              map,
+            });
+          });
+
+          // console.log(results[i]);
+          try {
+            place = {
+              placeAddress: results[i].formatted_address,
+              placeName: results[i].name,
+              placeStatus: results[i].business_status,
+              placePhoto: [results[i].photos[0].getUrl()],
+            };
+          } catch (error) {
+            console.log("Cannot load image");
+          }
+
+          let carouselDiv = document.createElement("div");
+          carouselDiv.setAttribute("class", "carousel_item");
+
+          let description = document.getElementById("desc");
+          let imageName = document.createElement("h5");
+          imageName.innerHTML = place.placeName;
+
+          let image = document.createElement("img");
+          image.setAttribute("alt", place.placeName);
+          try {
+            image.setAttribute("src", place.placePhoto);
+          } catch (error) {
+            console.log("Cannot load image");
+          }
+
+          carouselDiv.appendChild(image);
+          carouselDiv.appendChild(imageName);
+          carousel.appendChild(carouselDiv);
+
+          let activityDiv = document.createElement("div");
+          let activity = document.createElement("li");
+          // let link = document.createElement("a");
+          // link.setAttribute("href", "");
+          // link.setAttribute("target", "_blank");
+          // activity.appendChild(link);
+          // link.innerHTML = place.placeName;
+          activity.innerHTML = place.placeName;
+
+          activityDiv.appendChild(activity);
+          activityList.appendChild(activityDiv);
         }
+        map.setCenter(results[0].geometry.location);
 
-        let carouselDiv = document.createElement("div");
-        carouselDiv.setAttribute("class", "carousel_item");
-
-        let image = document.createElement("img");
-        image.setAttribute("alt", place.placeName);
-        try {
-          image.setAttribute("src", place.placePhoto);
-        } catch (error) {
-          console.log("Cannot load image");
-        }
-
-        carouselDiv.appendChild(image);
-        carousel.appendChild(carouselDiv);
-
-        let activityDiv = document.createElement("div");
-        let activity = document.createElement("li");
-        let link = document.createElement("a");
-        link.setAttribute("href", "");
-        link.setAttribute("target", "_blank");
-        activity.appendChild(link);
-        link.innerHTML = place.placeName;
-
-        activityDiv.appendChild(activity);
-        activityList.appendChild(activityDiv);
+        // console.log(place);
       }
-      map.setCenter(results[0].geometry.location);
 
-      // console.log(place);
-    }
+      const items = carousel.querySelectorAll(".carousel_item");
+      const buttonsHTML = Array.from(items, () => {
+        return `<span class="carousel_button"></span>`;
+      });
 
-    const items = carousel.querySelectorAll(".carousel_item");
-    const buttonsHTML = Array.from(items, () => {
-      return `<span class="carousel_button"></span>`;
+      carousel.insertAdjacentHTML(
+        "beforeend",
+        `
+          <div class="carousel_nav">
+            ${buttonsHTML.join("")}
+          </div>`
+      );
+
+      const buttons = carousel.querySelectorAll(".carousel_button");
+      buttons.forEach((button, i) => {
+        button.addEventListener("click", () => {
+          //unselect all items
+          items.forEach((item) =>
+            item.classList.remove("carousel_item_selected")
+          );
+          buttons.forEach((button) =>
+            button.classList.remove("carousel_button_selected")
+          );
+
+          items[i].classList.add("carousel_item_selected");
+          button.classList.add("carousel_button_selected");
+        });
+      });
+
+      if (items.length > 0) {
+        //selects 1st item on page load
+        items[0].classList.add("carousel_item_selected");
+        buttons[0].classList.add("carousel_button_selected");
+      }
     });
+  }
 
-    carousel.insertAdjacentHTML(
-      "beforeend",
-      `
+  function searchNearby() {
+    service.nearbySearch(request, function (results, status) {
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
+        for (let i = 0; i < results.length; i++) {
+          const marker = new google.maps.Marker({
+            position: results[i].geometry.location,
+            map,
+          });
+
+          marker.addListener("click", () => {
+            infowindow.setContent(
+              `<strong>${results[i].name}</strong> <br> ${results[i].formatted_address}` ||
+              "place"
+            );
+            infowindow.open({
+              anchor: marker,
+              map,
+            });
+          });
+
+          // console.log(results[i]);
+          try {
+            place = {
+              placeAddress: results[i].formatted_address,
+              placeName: results[i].name,
+              placeStatus: results[i].business_status,
+              placePhoto: [results[i].photos[0].getUrl()],
+            };
+          } catch (error) {
+            console.log("Cannot load image");
+          }
+
+          let carouselDiv = document.createElement("div");
+          carouselDiv.setAttribute("class", "carousel_item");
+
+          let description = document.getElementById("desc");
+          let imageName = document.createElement("h5");
+          imageName.innerHTML = place.placeName;
+
+          let image = document.createElement("img");
+          image.setAttribute("alt", place.placeName);
+          try {
+            image.setAttribute("src", place.placePhoto);
+          } catch (error) {
+            console.log("Cannot load image");
+          }
+
+          carouselDiv.appendChild(image);
+          carouselDiv.appendChild(imageName);
+          carousel.appendChild(carouselDiv);
+
+          let activityDiv = document.createElement("div");
+          let activity = document.createElement("li");
+          // let link = document.createElement("a");
+          // link.setAttribute("href", "");
+          // link.setAttribute("target", "_blank");
+          // activity.appendChild(link);
+          // link.innerHTML = place.placeName;
+          activity.innerHTML = place.placeName;
+
+          activityDiv.appendChild(activity);
+          activityList.appendChild(activityDiv);
+        }
+        map.setCenter(results[0].geometry.location);
+
+        // console.log(place);
+      }
+
+      const items = carousel.querySelectorAll(".carousel_item");
+      const buttonsHTML = Array.from(items, () => {
+        return `<span class="carousel_button"></span>`;
+      });
+
+      carousel.insertAdjacentHTML(
+        "beforeend",
+        `
         <div class="carousel_nav">
           ${buttonsHTML.join("")}
         </div>`
-    );
+      );
 
-    const buttons = carousel.querySelectorAll(".carousel_button");
-    buttons.forEach((button, i) => {
-      button.addEventListener("click", () => {
-        //unselect all items
-        items.forEach((item) =>
-          item.classList.remove("carousel_item_selected")
-        );
-        buttons.forEach((button) =>
-          button.classList.remove("carousel_button_selected")
-        );
+      const buttons = carousel.querySelectorAll(".carousel_button");
+      buttons.forEach((button, i) => {
+        button.addEventListener("click", () => {
+          //unselect all items
+          items.forEach((item) =>
+            item.classList.remove("carousel_item_selected")
+          );
+          buttons.forEach((button) =>
+            button.classList.remove("carousel_button_selected")
+          );
 
-        items[i].classList.add("carousel_item_selected");
-        button.classList.add("carousel_button_selected");
+          items[i].classList.add("carousel_item_selected");
+          button.classList.add("carousel_button_selected");
+        });
       });
-    });
 
-    if (items.length > 0) {
-      //selects 1st item on page load
-      items[0].classList.add("carousel_item_selected");
-      buttons[0].classList.add("carousel_button_selected");
-    }
-  });
+      if (items.length > 0) {
+        //selects 1st item on page load
+        items[0].classList.add("carousel_item_selected");
+        buttons[0].classList.add("carousel_button_selected");
+      }
+    });
+  }
 }
 
 //////////////////////////////// //////////////////////////////////

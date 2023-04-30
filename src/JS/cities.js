@@ -44694,7 +44694,7 @@ const cities = [
 
 document.getElementById('search-text').addEventListener('keydown', e => {
     if(e.key === 'Enter'){
-        save(document.getElementById('search-text').value);
+        yelpSearch(document.getElementById('search-text').value);
         // console.log(document.getElementById('search-text').value)
     }
 })
@@ -44710,8 +44710,9 @@ document.getElementById('search-text').addEventListener('input', (e) =>{
         let listItem = document.createElement("li");
   
         listItem.classList.add("list-items");
+        listItem.setAttribute('id', 'autofill-item');
         listItem.style.cursor = "pointer";
-        listItem.setAttribute("onclick", "displayStates('" + i + "'); save('" + i + "')");
+        listItem.setAttribute("onclick", "displayStates('" + i + "'); yelpSearch('" + i + "');");
   
         let word = `<b> ${i.substr(0, document.getElementById('search-text').value.length)}</b>`;
         word += i.substr(document.getElementById('search-text').value.length);
@@ -44729,7 +44730,7 @@ document.getElementById('search-text').addEventListener('input', (e) =>{
     // this.setAttribute('id', 'selected');
   }
 
-  function save(value){
+  function yelpSearch(value){
     // console.log(value)
     // console.log(document.getElementById('sort-list').value)
     // console.log(document.getElementById('food').value)
