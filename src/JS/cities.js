@@ -44692,7 +44692,14 @@ const cities = [
 "Nordvik",
 ];
 
-document.getElementById('search-text').addEventListener('input', () =>{
+document.getElementById('search-text').addEventListener('keydown', e => {
+    if(e.key === 'Enter'){
+        save(document.getElementById('search-text').value);
+        // console.log(document.getElementById('search-text').value)
+    }
+})
+
+document.getElementById('search-text').addEventListener('input', (e) =>{
     closeList();
     for (let i of cities){
       if (
@@ -44719,20 +44726,34 @@ document.getElementById('search-text').addEventListener('input', () =>{
   
   function displayStates(value){
     document.getElementById('search-text').value = value;
+    // this.setAttribute('id', 'selected');
   }
 
   function save(value){
-    console.log(value)
+    // console.log(value)
     // console.log(document.getElementById('sort-list').value)
     // console.log(document.getElementById('food').value)
     let sort = document.getElementById('sort-list').value;
     let cuisine = document.getElementById('food').value;
     closeList();
+    
+    if (document.getElementById('title').contains(document.getElementById('myerr'))){
+        document.getElementById('title').removeChild;
+    }
+
+    try{
+        while(suggestion.firstChild){
+            suggestion.removeChild(suggestion.firstChild);
+        }
+    }catch(e){
+        console.log(e)
+    }
+
     try{
         // throw new Error("No restaurants found");
       search(cuisine, value, sort).then(businesses => {
         businesses.forEach((business) => {
-          console.log(business)
+        //   console.log(business)
           let bodyDiv = document.createElement('div');
           let imgDiv = document.createElement('div');
           let infoDiv = document.createElement('div');
@@ -44790,7 +44811,7 @@ document.getElementById('search-text').addEventListener('input', () =>{
     
       })
       }
-      catch(e){
+      catch{
         let errorDiv = document.createElement('div');
         let error = document.createElement('h1');
         let errorMessage = 'Error: ' + e.message;
@@ -44811,6 +44832,7 @@ const apiKey =
   "RNx77U6BnXwS3g7NhN7maiClddv-59QHvokUq5qZIUNY5nbPcfURR52CmpBsYhUE01k5oqlcuLxAEs1gcP8Nb0c8fTUR4zq_BzYRIVfaZTMjWXkfA3FDt5_V_HLKY3Yx";
 
 async function search(term, location, sortBy) {
+    try{
     const response = await fetch(
       `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${term}&location=${location}&sort_by=${sortBy}`,
       {
@@ -44819,7 +44841,10 @@ async function search(term, location, sortBy) {
         },
       }
     );
-  
+    if (response.status !== 200){
+        throw new Error('No restaurants of specified type found in area!');
+    }
+    
     const jsonResponse = await response.json();
   
     if (jsonResponse.businesses) {
@@ -44838,75 +44863,16 @@ async function search(term, location, sortBy) {
         };
       });
     }
+    }catch(e){
+        let errorDiv = document.createElement('div');
+        let error = document.createElement('h4');
+        let errorMessage =  e.message;
+        error.innerHTML = errorMessage;
+        errorDiv.setAttribute('class', 'error');
+        errorDiv.setAttribute('id', 'myerr');
+        document.getElementById('title').appendChild(errorDiv);
+        errorDiv.appendChild(error);
+    }
   }
 
-//   try{
-//     // throw new Error("No restaurants found");
-//   search('italian', 'paris', 'best_match').then(businesses => {
-//     businesses.forEach((business) => {
-//       console.log(business)
-//       let bodyDiv = document.createElement('div');
-//       let imgDiv = document.createElement('div');
-//       let infoDiv = document.createElement('div');
-//       let addressDiv = document.createElement('div');
-//       let reviewDiv = document.createElement('div');
-//       let img1 = document.createElement('img');
-//       let img2 = document.createElement('img');
-//       let headings = document.createElement('h2');
-//       let address = document.createElement('p');
-//       let city = document.createElement('p');
-//       let zipCode = document.createElement('p');
-//       let category = document.createElement('h3');
-//       let rating = document.createElement('h3');
-//       let review = document.createElement('h3');
-
-//       suggestion.appendChild(bodyDiv);
-//       bodyDiv.appendChild(imgDiv);
-//       imgDiv.appendChild(img1);
-//       imgDiv.appendChild(img2)
-//       bodyDiv.appendChild(infoDiv);
-//       infoDiv.appendChild(headings);
-//       infoDiv.appendChild(addressDiv);
-//       addressDiv.appendChild(address);
-//       addressDiv.appendChild(city);
-//       addressDiv.appendChild(zipCode);
-//       infoDiv.appendChild(reviewDiv);
-//       reviewDiv.appendChild(category);
-//       reviewDiv.appendChild(rating);
-//       reviewDiv.appendChild(review);
-
-//       bodyDiv.setAttribute('class', 'business');
-
-//       imgDiv.setAttribute('class', 'img-container');
-//       img1.setAttribute('src', business.imageSrc);
-//       img1.setAttribute('class', 'bpic');
-//       img2.setAttribute('src', business.imageSrc);
-//       img2.setAttribute('class', 'fpic');
-
-//       headings.innerHTML = business.name;
-//       address.innerHTML = business.address;
-//       city.innerHTML = business.city;
-//       zipCode.innerHTML = business.zipCode;
-//       category.innerHTML = business.category;
-//       rating.innerHTML = `Rating: ${business.rating}`;
-//       review.innerHTML = `${business.reviewCount} Reviews`;
-
-//       infoDiv.setAttribute('class', 'info');
-
-//       addressDiv.setAttribute('class', 'address');
-
-//       reviewDiv.setAttribute('class', 'review');
-//     })
-
-//   })
-//   }
-//   catch(e){
-//     let errorDiv = document.createElement('div');
-//     let error = document.createElement('h1');
-//     let errorMessage = 'Error: ' + e.message;
-//     error.innerHTML = errorMessage;
-//     errorDiv.setAttribute('class', 'error');
-//     document.getElementById('title').appendChild(errorDiv);
-//     errorDiv.appendChild(error);
-//   }
 

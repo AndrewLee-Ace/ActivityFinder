@@ -420,10 +420,10 @@ font-family: 'Martel Sans', sans-serif; */
   .container .map-instruc {
     font-family: "Varela Round", sans-serif;
     display: block;
-    font-size: 2.3em;
+    font-size: 2em;
     width: 40rem;
     position: relative;
-    left: 10rem;
+    left: 7rem;
     text-align: center;
     /* grid-area: content-m; */
   }
@@ -444,10 +444,10 @@ font-family: 'Martel Sans', sans-serif; */
   .container .list-instruc {
     font-family: "Varela Round", sans-serif;
     /* display: inline-block; */
-    font-size: 2.3em;
+    font-size: 2em;
     width: 15rem;
     position: relative;
-    right: 0.5rem;
+    right: 0.7rem;
     text-align: center;
     visibility: visible;
     grid-area: content-l;

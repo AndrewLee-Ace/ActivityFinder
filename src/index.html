@@ -25,12 +25,12 @@
   <body>
     
 
-    <div class="container">
+    <div class="container" >
         
-        <div class="header">
+        <div class="header" id="main">
             <h1>Activity Finder</h1>
         </div>
-        <form id="form" autocomplete="off">
+        <form id="form" autocomplete="off" onsubmit="event.preventDefault()">
           <div id="search">
             <input type="text" placeholder="Search City" id="search-text">
             <ul class="list" id="cities"></ul>
@@ -48,9 +48,9 @@
           <div id="type">
             <label for="Type" class="food-label">Cuisine Type</label>
             <select name="Type" class="food" id="food">
+              <option value="American">American</option>
               <option value="Indian">Indian</option>
               <option value="Thai">Thai</option>
-              <option value="American">American</option>
               <option value="Punjabi">Punjabi</option>
               <option value="Middle Eastern">Middle Eastern</option>
               <option value="European">European</option>
@@ -70,13 +70,15 @@
               <option value="Kashmiri">Kashmiri</option>
               <option value="Jiangsu">Jiangsu</option>
               <option value="Mediterranean">Mediterranean</option>
+              <option value="African">African</option>
             </select>
           </div>
         </form>
         <div class="stuff">
       <h3 class="map-instruc">
-        Move to your desired location on the map and attractions based on that
-        location will be listed
+        <!-- Move to your desired location on the map and attractions based on that
+        location will be listed -->
+        Search your travel destination to populate the map with attractions and restaurants
       </h3>
         <!-- <button
                 class="curlocation"
@@ -103,7 +105,7 @@
     <div id="info">
         <h1>Activity Info</h1>
         <div class="description">
-        <div class="carousel"></div>
+        <div class="carousel" id="carousel"></div>
         </div>
     </div>
     </div>
@@ -129,7 +131,7 @@
     <script src="./JS/cities.js"></script>
     <script
       async
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOOarwDBwWEdcUpxFrBssT6XHSNxLeKIk&libraries=places&callback=initMap"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOOarwDBwWEdcUpxFrBssT6XHSNxLeKIk&libraries=places&callback=initMap&v=weekly"
     ></script>
   </body>
 </html>
