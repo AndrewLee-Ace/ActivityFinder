@@ -44711,8 +44711,8 @@ document.getElementById('search-text').addEventListener('input', (e) =>{
   
         listItem.classList.add("list-items");
         listItem.setAttribute('id', 'autofill-item');
-        listItem.style.cursor = "pointer";
-        listItem.setAttribute("onclick", "displayStates('" + i + "'); yelpSearch('" + i + "');");
+        // listItem.style.cursor = "pointer";
+        // listItem.setAttribute("onclick", "displayStates('" + i + "'); yelpSearch('" + i + "'); ");
   
         let word = `<b> ${i.substr(0, document.getElementById('search-text').value.length)}</b>`;
         word += i.substr(document.getElementById('search-text').value.length);
@@ -44725,10 +44725,10 @@ document.getElementById('search-text').addEventListener('input', (e) =>{
     }
   })
   
-  function displayStates(value){
-    document.getElementById('search-text').value = value;
-    // this.setAttribute('id', 'selected');
-  }
+//   function displayStates(value){
+//     document.getElementById('search-text').value = value;
+//     // this.setAttribute('id', 'selected');
+//   }
 
   function yelpSearch(value){
     // console.log(value)
