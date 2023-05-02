@@ -24,8 +24,10 @@ Method to initialize a google map object
 Assigns map variable its position and location on page to map id
 */
 function initMap() {
+  let pos = '';
   let latlng;
   let searchAddress;
+  let id;
   const geocoder = new google.maps.Geocoder();
   const infowindow = new google.maps.InfoWindow();
 
@@ -33,6 +35,8 @@ function initMap() {
     25.76136052122015,
     -80.19856387437098
   );
+
+  document.getElementById('search-text').value = 'Miami';
 
   //for search by query
 
@@ -66,21 +70,41 @@ function initMap() {
   });
 
   const locationButton = document.getElementById("cur-location");
-
+  
   locationButton.addEventListener("click", () => {
 
+    try {
+      while (document.getElementById("names").firstChild) {
+        document
+          .getElementById("names")
+          .removeChild(document.getElementById("names").firstChild);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+
+    try {
+      while (document.getElementById("carousel").firstChild) {
+        document
+          .getElementById("carousel")
+          .removeChild(document.getElementById("carousel").firstChild);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
+     id = navigator.geolocation.watchPosition(
         (position) => {
-          const pos = {
+           pos = {
             lat: position.coords.latitude,
             lng: position.coords.longitude,
           };
           map.setCenter(pos);
-
+          console.log('location used')
           request.location = pos;
 
-          searchNearby();
+          // searchNearby();
 
           geocoder.geocode({location: pos}).then((response) => {
             // console.log(response.results[6].formatted_address);
@@ -98,11 +122,18 @@ function initMap() {
     }
   });
 
+  navigator.geolocation.clearWatch(id);
+
   const service = new google.maps.places.PlacesService(map);
 
   document.getElementById("search-text").addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
       searchAddress = document.getElementById("search-text").value;
+
+      if (searchAddress === ''){
+        alert("Please enter a city to search");
+        return;
+      }
       // console.log(searchAddress)
 
       // request.query = searchAddress;
@@ -137,6 +168,7 @@ function initMap() {
           request.location = latlng;
         }
       });
+      // console.log('SEARCH')
       searchNearby();  //GET AREA SEARCH. UNCOMMENT NEARBY SEARCH
     }
   });

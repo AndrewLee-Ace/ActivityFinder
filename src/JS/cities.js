@@ -44694,6 +44694,9 @@ const cities = [
 
 document.getElementById('search-text').addEventListener('keydown', e => {
     if(e.key === 'Enter'){
+        if (document.getElementById('search-text').value === ''){
+            return;
+        }
         yelpSearch(document.getElementById('search-text').value);
         // console.log(document.getElementById('search-text').value)
     }
