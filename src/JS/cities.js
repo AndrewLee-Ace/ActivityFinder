@@ -44692,12 +44692,18 @@ const cities = [
 "Nordvik",
 ];
 
+let info = document.createElement('h6');
+// info.setAttribute('style', 'transform: translateY(6rem)')
+info.innerHTML = "To see restaurants perfrom search on top of pages"
+document.getElementById("title").appendChild(info);
+
 document.getElementById('search-text').addEventListener('keydown', e => {
     if(e.key === 'Enter'){
         if (document.getElementById('search-text').value === ''){
             return;
         }
         yelpSearch(document.getElementById('search-text').value);
+        info.style.visibility = 'hidden';
         // console.log(document.getElementById('search-text').value)
     }
 })
@@ -44739,6 +44745,9 @@ document.getElementById('search-text').addEventListener('input', (e) =>{
     // console.log(document.getElementById('food').value)
     let sort = document.getElementById('sort-list').value;
     let cuisine = document.getElementById('food').value;
+
+    // document.getElementById('title').style.visibility = 'visible';
+
     closeList();
     
     if (document.getElementById('title').contains(document.getElementById('myerr'))){
@@ -44759,6 +44768,7 @@ document.getElementById('search-text').addEventListener('input', (e) =>{
         businesses.forEach((business) => {
         //   console.log(business)
           let bodyDiv = document.createElement('div');
+          let link = document.createElement('a');
           let imgDiv = document.createElement('div');
           let infoDiv = document.createElement('div');
           let addressDiv = document.createElement('div');
@@ -44775,6 +44785,8 @@ document.getElementById('search-text').addEventListener('input', (e) =>{
     
           suggestion.appendChild(bodyDiv);
           bodyDiv.appendChild(imgDiv);
+          bodyDiv.appendChild(link);
+          link.appendChild(imgDiv);
           imgDiv.appendChild(img1);
           imgDiv.appendChild(img2)
           bodyDiv.appendChild(infoDiv);
@@ -44789,7 +44801,10 @@ document.getElementById('search-text').addEventListener('input', (e) =>{
           reviewDiv.appendChild(review);
     
           bodyDiv.setAttribute('class', 'business');
-    
+            
+          link.setAttribute('href', `http://maps.google.com/?q=${business.name} ${business.address}`);
+          link.setAttribute('target', '_blank');
+
           imgDiv.setAttribute('class', 'img-container');
           img1.setAttribute('src', business.imageSrc);
           img1.setAttribute('alt', 'No Image Source');
@@ -44880,3 +44895,4 @@ async function search(term, location, sortBy) {
   }
 
 
+//   search(document.getElementById('food').value, 'miami', document.getElementById('sort-list').value);

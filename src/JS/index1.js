@@ -24,7 +24,7 @@ Method to initialize a google map object
 Assigns map variable its position and location on page to map id
 */
 function initMap() {
-  let pos = '';
+  let check = false;
   let latlng;
   let searchAddress;
   let id;
@@ -72,37 +72,40 @@ function initMap() {
   const locationButton = document.getElementById("cur-location");
   
   locationButton.addEventListener("click", () => {
-
-    try {
-      while (document.getElementById("names").firstChild) {
-        document
-          .getElementById("names")
-          .removeChild(document.getElementById("names").firstChild);
-      }
-    } catch (e) {
-      console.log(e);
+    if (check){
+      return;
     }
+    // try {
+    //   while (document.getElementById("names").firstChild) {
+    //     document
+    //       .getElementById("names")
+    //       .removeChild(document.getElementById("names").firstChild);
+    //   }
+    // } catch (e) {
+    //   console.log(e);
+    // }
 
-    try {
-      while (document.getElementById("carousel").firstChild) {
-        document
-          .getElementById("carousel")
-          .removeChild(document.getElementById("carousel").firstChild);
-      }
-    } catch (e) {
-      console.log(e);
-    }
+    // try {
+    //   while (document.getElementById("carousel").firstChild) {
+    //     document
+    //       .getElementById("carousel")
+    //       .removeChild(document.getElementById("carousel").firstChild);
+    //   }
+    // } catch (e) {
+    //   console.log(e);
+    // }
 
     if (navigator.geolocation) {
-     id = navigator.geolocation.watchPosition(
+      id = navigator.geolocation.watchPosition(
+      // navigator.geolocation.getCurrentPosition(
         (position) => {
-           pos = {
+           let pos = {
             lat: position.coords.latitude,
             lng: position.coords.longitude,
           };
-          map.setCenter(pos);
+          // map.setCenter(pos);
           console.log('location used')
-          request.location = pos;
+          // request.location = pos;
 
           // searchNearby();
 
@@ -113,12 +116,13 @@ function initMap() {
             const addy = fullAddy.substring(0, fullAddy.indexOf(','));
             document.getElementById('search-text').value = addy;
           })
-
+          navigator.geolocation.clearWatch(id);
+          check = true;
         }
         
       );
     } else {
-      alert("Could not get current location");
+      // alert("Could not get current location");
     }
   });
 
