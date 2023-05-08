@@ -1,3 +1,5 @@
+import express from 'express';
+
 let map;
 
 let place = {
@@ -12,6 +14,7 @@ let carousel = document.querySelector(".carousel");
 let activityList = document.getElementById("names");
 
 let suggestion = document.getElementById("suggestion");
+
 
 // const x = document.getElementById("demo");
 
