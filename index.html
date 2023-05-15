@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Activity Finder</title>
 
-    <link rel="stylesheet" href="./CSS/index.css" />
+    <link rel="stylesheet" href="./src/CSS/index.css" />
 
     <!-- Goole Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -32,7 +32,7 @@
         </div>
         <form id="form" autocomplete="off" onsubmit="event.preventDefault()">
           <div id="search">
-            <input type="text" placeholder="Search City" id="search-text">
+            <input type="text" placeholder="Search City, State/Province" id="search-text">
             <ul class="list" id="cities"></ul>
           </div>
 
@@ -93,9 +93,9 @@
         </button> -->
         </div>
 
-      <h3 class="list-instruc">
+      <!-- <h3 class="list-instruc">
           Click on the activity link!
-      </h3>
+      </h3> -->
       
 
     <div id="map"></div>
@@ -129,13 +129,13 @@
             <p>Activity Finder was developed by Andrew Lee</p>
             <ul style="list-style-type: none; display: inline-flex;">
               <li><a href="https://github.com/AndrewLee-Ace">
-                <img src="./github.png" alt="GitHub" class="thing-content">
+                <img src="./src/github.png" alt="GitHub" class="thing-content">
               </a></li>
               <li><a href="https://www.linkedin.com/in/andrew-lee-8596ba99/">
-                <img src="./linkedin.png" alt="LinkedIn" class="thing-content">
+                <img src="./src/linkedin.png" alt="LinkedIn" class="thing-content">
               </a></li>
               <li><a href="https://www.instagram.com">
-                <img src="./insta.jpeg" alt="Instagram" class="thing-content">
+                <img src="./src/insta.jpeg" alt="Instagram" class="thing-content">
               </a></li>
             </ul>
               
@@ -145,8 +145,8 @@
     </div>
 
     <!-- <script type="module" src="./JS/index.js"></script> -->
-    <script type="module" src="./JS/index1.js"></script>
-    <script src="./JS/cities.js"></script>
+    <script type="module" src="./src/JS/index1.js"></script>
+    <script src="./src/JS/cities.js"></script>
     <script
       async
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOOarwDBwWEdcUpxFrBssT6XHSNxLeKIk&libraries=places&callback=initMap&v=weekly"

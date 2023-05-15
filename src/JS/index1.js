@@ -1,6 +1,5 @@
-import express from 'express';
-
 let map;
+let check = false;
 
 let place = {
   placeAddress: "",
@@ -15,7 +14,6 @@ let activityList = document.getElementById("names");
 
 let suggestion = document.getElementById("suggestion");
 
-
 // const x = document.getElementById("demo");
 
 //  navigator.geolocation.getCurrentPosition(initMap);
@@ -27,7 +25,6 @@ Method to initialize a google map object
 Assigns map variable its position and location on page to map id
 */
 function initMap() {
-  let check = false;
   let latlng;
   let searchAddress;
   let id;
@@ -39,7 +36,7 @@ function initMap() {
     -80.19856387437098
   );
 
-  document.getElementById('search-text').value = 'Miami';
+  // document.getElementById('search-text').value = 'Miami';
 
   //for search by query
 
@@ -78,6 +75,8 @@ function initMap() {
     if (check){
       return;
     }
+
+    getLoaction();
     // try {
     //   while (document.getElementById("names").firstChild) {
     //     document
@@ -98,35 +97,35 @@ function initMap() {
     //   console.log(e);
     // }
 
-    if (navigator.geolocation) {
-      id = navigator.geolocation.watchPosition(
-      // navigator.geolocation.getCurrentPosition(
-        (position) => {
-           let pos = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-          };
+    // if (navigator.geolocation) {
+    //   id = navigator.geolocation.watchPosition(
+    //   // navigator.geolocation.getCurrentPosition(
+    //     (position) => {
+    //        let pos = {
+    //         lat: position.coords.latitude,
+    //         lng: position.coords.longitude,
+    //       };
           // map.setCenter(pos);
-          console.log('location used')
-          // request.location = pos;
+    //       console.log('location used')
+    //       // request.location = pos;
 
-          // searchNearby();
+    //       // searchNearby();
 
-          geocoder.geocode({location: pos}).then((response) => {
-            // console.log(response.results[6].formatted_address);
-            const fullAddy = response.results[6].formatted_address;
+    //       geocoder.geocode({location: pos}).then((response) => {
+    //         // console.log(response.results[6].formatted_address);
+    //         const fullAddy = response.results[6].formatted_address;
 
-            const addy = fullAddy.substring(0, fullAddy.indexOf(','));
-            document.getElementById('search-text').value = addy;
-          })
-          navigator.geolocation.clearWatch(id);
-          check = true;
-        }
+    //         const addy = fullAddy.substring(0, fullAddy.indexOf(','));
+    //         document.getElementById('search-text').value = addy;
+    //       })
+    //       navigator.geolocation.clearWatch(id);
+    //       check = true;
+    //     }
         
-      );
-    } else {
-      // alert("Could not get current location");
-    }
+    //   );
+    // } else {
+    //   // alert("Could not get current location");
+    // }
   });
 
   navigator.geolocation.clearWatch(id);
@@ -196,7 +195,7 @@ function initMap() {
   
             marker.addListener("click", () => {
               infowindow.setContent(
-                `<strong>${results[i].name}</strong> <br> ${results[i].formatted_address}` ||
+                `<strong>${results[i].name}</strong> <br> ` ||
                   "place"
               );
               infowindow.open({
@@ -300,7 +299,7 @@ function initMap() {
 
           marker.addListener("click", () => {
             infowindow.setContent(
-              `<strong>${results[i].name}</strong> <br> ${results[i].formatted_address}` ||
+              `<strong>${results[i].name}</strong> <br> ` ||
                 "place"
             );
             infowindow.open({
@@ -392,6 +391,39 @@ function initMap() {
         buttons[0].classList.add("carousel_button_selected");
       }
     });
+  }
+
+  function getLoaction(){
+    check = true;
+    if (navigator.geolocation) {
+      id = navigator.geolocation.watchPosition(
+      // navigator.geolocation.getCurrentPosition(
+        (position) => {
+           let pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          };
+          // map.setCenter(pos);
+          // console.log('location used')
+          // request.location = pos;
+
+          // searchNearby();
+
+          geocoder.geocode({location: pos}).then((response) => {
+            // console.log(response.results[6].formatted_address);
+            const fullAddy = response.results[6].formatted_address;
+
+            const addy = fullAddy.substring(0, fullAddy.indexOf(','));
+            document.getElementById('search-text').value = addy;
+          })
+          navigator.geolocation.clearWatch(id);
+          check = true;
+        }
+        
+      );
+    } else {
+      // alert("Could not get current location");
+    }
   }
 }
 

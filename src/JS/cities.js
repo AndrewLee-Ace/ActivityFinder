@@ -2298,7 +2298,6 @@ const cities = [
 "Ciudad Victoria",
 "Ciudad Santa Catarina",
 "Santarém",
-"Newark",
 "Vaughan",
 ",Āwasa",
 ",Ōakashichō",
@@ -12849,7 +12848,6 @@ const cities = [
 "Dias d’Ávila",
 "Ban Tha Khlong",
 "Usol’ye-Sibirskoye",
-"Newark",
 "Elizabethtown",
 "Hasselt",
 "San Pedro Pinula",
@@ -14910,7 +14908,6 @@ const cities = [
 "Annaka",
 "Kampen",
 "Cholet",
-"Manhattan",
 "Xielu",
 "Tiruvalla",
 "Taquara",
@@ -15878,7 +15875,6 @@ const cities = [
 "Ono",
 "Güroymak",
 "Luwuk",
-"Newark",
 "Penco",
 "Sogod",
 "Herzogenrath",
@@ -19884,7 +19880,6 @@ const cities = [
 "Bolobo",
 "Atwater",
 "Buey Arriba",
-"Newark",
 "Al Ḩusaynīyah",
 "Radcliffe",
 "Mamaroneck",
@@ -42030,7 +42025,6 @@ const cities = [
 "Slateng Dua",
 "Kruszwica",
 "Riacho dos Machados",
-"Manhattan",
 "Risaralda",
 "Mound",
 "Newmarket",
@@ -44750,8 +44744,17 @@ document.getElementById('search-text').addEventListener('input', (e) =>{
 
     closeList();
     
-    if (document.getElementById('title').contains(document.getElementById('myerr'))){
-        document.getElementById('title').removeChild;
+    // if (document.getElementById('title').contains(document.getElementById('myerr'))){
+    //     document.getElementById('title').removeChild;
+    // }
+
+    try {
+        while(document.getElementById('title').firstChild){
+            document.getElementById('title').removeChild(document.getElementById('title').firstChild);
+        }
+        document.getElementById('title').innerHTML= "Nearby Restaurants"
+    } catch (error) {
+        console.log(error);
     }
 
     try{
